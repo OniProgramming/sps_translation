@@ -18,7 +18,6 @@ SPS.app = (function () {
   function getState() { return { ...state }; }
 
   function setLang(lang) {
-    const prevLang = state.lang;
     state.lang = lang;
     try { localStorage.setItem('sps:lang', lang); } catch (_) { }
     SPS.i18n.applyAll();
@@ -33,7 +32,7 @@ SPS.app = (function () {
     // Non-reading pages (about/legend/commentary): redirect to the language variant
     // of the current URL, e.g. about.html <-> about.ro.html
     if (state.pageMode === 'page') {
-      _switchPageLanguage(lang, prevLang);
+      _switchPageLanguage(lang);
       return;
     }
 
@@ -50,50 +49,23 @@ SPS.app = (function () {
    *
    * Strategy:
    *   1. Compute the target URL by inserting/removing `.{lang}` before .html
-   *   2. Pre-flight with HEAD fetch
-   *   3. If 200, navigate. If 404, restore language and show a banner.
+   *   2. Navigate directly to that static file.
    */
-  function _switchPageLanguage(targetLang, prevLang) {
-    const currentPath = location.pathname;
-    const targetPath = _computeLangVariantPath(currentPath, targetLang);
+  function _switchPageLanguage(targetLang) {
+    const currentUrl = new URL(window.location.href);
+    const targetPath = _computeLangVariantPath(currentUrl.pathname, targetLang);
 
-    // If the path didn't change (e.g. switching to the same lang), no-op
-    if (targetPath === currentPath) {
+    // If the requested language already matches this file, only refresh the UI.
+    if (targetPath === currentUrl.pathname) {
       SPS.ui.refreshSelectors();
       return;
     }
 
-    // On file:// URLs (user opened the site by double-clicking a file), `fetch`
-    // can't do a HEAD pre-flight reliably — different browsers give different
-    // errors. Skip the check and navigate directly. If the target file doesn't
-    // exist, the browser will show its native 404 / file-not-found page.
-    if (location.protocol === 'file:') {
-      window.location.href = targetPath;
-      return;
-    }
-
-    // HTTP(S): pre-flight with HEAD, fall back to banner if the file is missing.
-    fetch(targetPath, { method: 'HEAD' })
-      .then(resp => {
-        if (resp.ok) {
-          window.location.href = targetPath;
-        } else {
-          // Target page not yet translated — restore previous language and show banner
-          _showLangFallbackBanner(targetLang);
-          state.lang = prevLang;
-          try { localStorage.setItem('sps:lang', prevLang); } catch (_) { }
-          SPS.i18n.applyAll();
-          SPS.ui.refreshSelectors();
-        }
-      })
-      .catch(() => {
-        // Network error — fall back gracefully
-        _showLangFallbackBanner(targetLang);
-        state.lang = prevLang;
-        try { localStorage.setItem('sps:lang', prevLang); } catch (_) { }
-        SPS.i18n.applyAll();
-        SPS.ui.refreshSelectors();
-      });
+    // Navigate directly. This behaves the same on file://, localhost, and
+    // GitHub Pages, and avoids an HTTP HEAD pre-flight that can block a valid
+    // static language page from opening.
+    currentUrl.pathname = targetPath;
+    window.location.assign(currentUrl.href);
   }
 
   /**
@@ -125,34 +97,6 @@ SPS.app = (function () {
     } else {
       return dir + base + '.' + targetLang + '.html';
     }
-  }
-
-  /**
-   * Display a small dismissible banner at the top of the page indicating
-   * the requested language version does not yet exist.
-   */
-  function _showLangFallbackBanner(targetLang) {
-    // Remove any previous banner
-    const existing = document.getElementById('lang-fallback-banner');
-    if (existing) existing.remove();
-
-    const langName = (SPS.i18n.LANGS.find(l => l.code === targetLang) || {}).label || targetLang;
-    const message = SPS.i18n.t('lang_fallback_message')
-      .replace('{lang}', langName);
-
-    const banner = document.createElement('div');
-    banner.id = 'lang-fallback-banner';
-    banner.className = 'lang-fallback-banner';
-    banner.setAttribute('role', 'status');
-    banner.innerHTML = `
-      <span class="lang-fallback-message">${message}</span>
-      <button type="button" class="lang-fallback-close" aria-label="Close">×</button>
-    `;
-    document.body.appendChild(banner);
-    banner.querySelector('.lang-fallback-close').addEventListener('click', () => banner.remove());
-
-    // Auto-dismiss after 6 seconds
-    setTimeout(() => { if (banner.parentNode) banner.remove(); }, 6000);
   }
 
   /**
@@ -253,6 +197,22 @@ SPS.app = (function () {
     } catch (_) { }
   }
 
+  // Static pages encode their language in the filename, for example
+  // about.ro.html or legend.ro.html. On those pages the URL is authoritative;
+  // otherwise fall back to the saved preference.
+  function _restorePageLanguage() {
+    const filename = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
+    const match = filename.match(/\.([a-z]{2})\.html$/i);
+    const urlLang = match ? match[1].toLowerCase() : 'en';
+
+    if (SPS.i18n.LANGS.find(l => l.code === urlLang)) {
+      state.lang = urlLang;
+      try { localStorage.setItem('sps:lang', urlLang); } catch (_) { }
+    } else {
+      _restoreLangPreference();
+    }
+  }
+
   // ---- init ----
   function init() {
     // 1) Restore language preference
@@ -293,8 +253,8 @@ SPS.app = (function () {
   function initPage(ctx) {
     state.pageMode = 'page';
 
-    // 1) Restore language preference
-    _restoreLangPreference();
+    // 1) Derive static-page language from the filename first
+    _restorePageLanguage();
 
     // 2) Establish book/section context for selectors and side-panel lookups
     if (ctx && ctx.bookId && SPS.books.get(ctx.bookId)) {
