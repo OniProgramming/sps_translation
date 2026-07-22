@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legend · SPS Theology</title>
+<meta name="description" content="The Legend — how to read the SPS apparatus, the three modes, ambiguity markers, and the decision procedure.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+
+<!-- Theme bootstrap — applied before <body> renders to prevent flash -->
+<script>(function(){try{var t=localStorage.getItem('sps:theme');if(t!=='light'&&t!=='dark'&&t!=='warm'){t='light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+
+</head>
+<body data-page-type="legend">
+
+<!-- ========== TOP NAVIGATION ========== -->
+  <nav class="topnav" id="topnav">
+    <div class="topnav-inner">
+
+      <!-- Brand -->
+      <a class="nav-brand" href="#" onclick="event.preventDefault();">
+        <span class="nav-brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <!-- Left brace -->
+            <path d="M 12.5 7
+                   C 9.8 7 9.0 8.2 9.0 10.5
+                   L 9.0 14
+                   C 9.0 15.4 8.4 16 7.0 16
+                   C 8.4 16 9.0 16.6 9.0 18
+                   L 9.0 21.5
+                   C 9.0 23.8 9.8 25 12.5 25" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Em-dash -->
+            <line x1="13" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            <!-- Right brace -->
+            <path d="M 19.5 7
+                   C 22.2 7 23.0 8.2 23.0 10.5
+                   L 23.0 14
+                   C 23.0 15.4 23.6 16 25.0 16
+                   C 23.6 16 23.0 16.6 23.0 18
+                   L 23.0 21.5
+                   C 23.0 23.8 22.2 25 19.5 25" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="nav-brand-text">
+          <span class="nav-brand-name">SPS Theology</span>
+          <span class="nav-brand-mark" data-i18n="brand_tagline">Source Preservation Scripture</span>
+        </span>
+      </a>
+
+      <!-- Book selector -->
+      <div class="selector-wrap" id="book-selector-wrap">
+        <button class="selector-btn" id="book-selector-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="selector-btn-eyebrow" data-i18n="selector_book">Book</span>
+          <span class="selector-btn-value" id="book-selector-value">—</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown" id="book-selector-dropdown" role="listbox">
+          <div class="dropdown-header" data-i18n="dropdown_select_book">Select a book</div>
+          <ul class="dropdown-list" id="book-list"></ul>
+        </div>
+      </div>
+
+      <!-- Chapter (toledot) selector -->
+      <div class="selector-wrap" id="chapter-selector-wrap">
+        <button class="selector-btn" id="chapter-selector-btn" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="selector-btn-eyebrow" data-i18n="selector_chapter">Section</span>
+          <span class="selector-btn-value" id="chapter-selector-value">—</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown selector-dropdown-wide" id="chapter-selector-dropdown" role="listbox">
+          <div class="dropdown-header" id="chapter-dropdown-header">—</div>
+          <ul class="dropdown-list" id="chapter-list"></ul>
+        </div>
+      </div>
+
+      <!-- Spacer -->
+      <div class="nav-spacer"></div>
+
+      <!-- Language selector -->
+      <div class="selector-wrap selector-compact" id="lang-selector-wrap">
+        <button class="selector-btn selector-btn-mini" id="lang-selector-btn" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="selector-btn-value" id="lang-selector-value">EN</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown selector-dropdown-mini" id="lang-selector-dropdown" role="listbox">
+          <ul class="dropdown-list" id="lang-list"></ul>
+        </div>
+      </div>
+
+      <!-- Add this inside .topnav-inner, between the language selector and the theme toggle -->
+      <button id="search-toggle" class="search-toggle" type="button" aria-label="Search">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- Quick links -->
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+        <!-- Light icon (shown in dark mode — clicking goes to warm) -->
+        <svg class="icon-light" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+          <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <line x1="8" y1="1.5" x2="8" y2="3" />
+            <line x1="8" y1="13" x2="8" y2="14.5" />
+            <line x1="1.5" y1="8" x2="3" y2="8" />
+            <line x1="13" y1="8" x2="14.5" y2="8" />
+            <line x1="3.4" y1="3.4" x2="4.4" y2="4.4" />
+            <line x1="11.6" y1="11.6" x2="12.6" y2="12.6" />
+            <line x1="3.4" y1="12.6" x2="4.4" y2="11.6" />
+            <line x1="11.6" y1="4.4" x2="12.6" y2="3.4" />
+          </g>
+        </svg>
+        <!-- Dark icon (shown in light mode — clicking goes to dark) -->
+        <svg class="icon-dark" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <path
+            d="M 12.5 9 C 12.0 9.4 11.4 9.6 10.7 9.6 C 8.7 9.6 7.1 8.0 7.1 6.0 C 7.1 5.3 7.3 4.7 7.7 4.2 C 5.5 4.6 3.8 6.5 3.8 8.8 C 3.8 11.4 5.9 13.5 8.5 13.5 C 10.5 13.5 12.2 12.2 12.8 10.4 C 12.7 9.9 12.6 9.4 12.5 9 Z"
+            fill="currentColor" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round" />
+        </svg>
+        <!-- Warm icon (shown in dark mode — clicking goes to light) -->
+        <svg class="icon-warm" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="5" fill="currentColor" opacity="0.5" />
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a class="nav-link" href="about.html" data-i18n="nav_about">About</a>
+        <a class="nav-link" href="legend.html" data-i18n="nav_legend">Legend</a>
+        <a class="nav-link-support" href="https://ko-fi.com/spstheology" target="_blank" rel="noopener" title="Support this project">Donate</a>
+      </div>
+    </div>
+  </nav>
+
+<main class="main" id="main" role="main">
+
+  <header class="page-header">
+    <div class="page-eyebrow">
+      <span data-i18n="page_legend_eyebrow">Legend</span>
+    </div>
+    <h1 class="page-title">How to read the apparatus</h1>
+    <p class="page-sub">Three modes, ambiguity markers, and the decision procedure they document.</p>
+  </header>
+
+  <article class="page-body">
+
+    <p class="page-body-lead">SPS uses three rendering modes and a small set of ambiguity markers. Each is a way of communicating something specific about the relationship between the source-language text and its English target. The conventions are consistent across every book on the site.</p>
+
+    <h2>Mode 1 — Plain translation</h2>
+
+    <p>Mode 1 is unmarked English text. A reader sees only the translation; no apparatus notation appears. Mode 1 is used when the target-language word carries the source's sense without distortion — when there is no good reason to invite the reader to the source. Most function words, common nouns, and grammatical particles are rendered in Mode 1.</p>
+
+    <p>Mode 1 is the default. A term moves out of Mode 1 only when the decision procedure produces a reason to mark it.</p>
+
+    <h2>Mode 2 — Documented translation</h2>
+
+    <p>Mode 2 looks like this in the reading: <em>archē</em><code>&nbsp;{— ἀρχή}</code>. The English equivalent is given, but followed by the source term in braces with an em-dash. The brace notation is the visual signal — a "documented" rendering whose English approximates the source but does not fully carry it.</p>
+
+    <p>Click any Mode 2 word and the side panel opens with the term's full apparatus: a brief gloss, a substantive note explaining what the source carries that English loses, the five-step decision procedure showing which steps the rendering passed or failed, and the axioms the rendering serves. The audit trail is the heart of the methodology — it lets a reader see <em>why</em> the rendering was made the way it was.</p>
+
+    <h2>Mode 3 — Transliteration</h2>
+
+    <p>Mode 3 renders the source term itself, in Roman characters, italicised: <em>Elohim</em>, <em>Logos</em>, <em>doxa</em>, <em>monogenēs</em>. These are terms where the methodology has determined that no single English word preserves the source's morphological complexity, intertextual range, theological weight, or grammatical openness. Translation is replaced by transliteration so the source can speak in its own register.</p>
+
+    <p>A Mode 3 term carries a coloured underline that persists. Click it to open the apparatus in the same way as a Mode 2 term — the panel shows the gloss, the note explaining why the term has not been translated, the decision-procedure audit, and the axioms served.</p>
+
+    <h2>Ambiguity markers</h2>
+
+    <p>Some places in the source-language text are <em>genuinely</em> open between two or more readings. The grammar permits both. The lexicon permits both. Standard translations close these openings silently by picking one reading and presenting it as the text. SPS surfaces them.</p>
+
+    <p>Two visual conventions mark ambiguity:</p>
+
+    <p>The bracket-pipe form <code>[[a | b]]</code> appears inline in the prose where the ambiguity is local — typically a single word or short phrase whose two readings both fit cleanly. For example, in <em>And the darkness it <code>[[did-not-grasp | did-not-overpower]]</code> katelaben</em>, the bracket-pipe shows the two senses of καταλαμβάνω that the Greek does not disambiguate.</p>
+
+    <p>The lozenge marker <code>[[◊]]</code> appears where the ambiguity is structural and the prose can only show one reading at a time — a syntactic parsing question, a textual-critical variant, or a multi-way grammatical openness. Click the lozenge to see all readings the source permits, with the reasoning behind the openness.</p>
+
+    <p>Ambiguity is never resolved silently. When SPS picks a reading for the body text (because something must appear in the prose), the marker shows you that the picking happened.</p>
+
+    <h2>The five-step decision procedure</h2>
+
+    <p>Every Mode 2 and Mode 3 rendering carries an audit trail showing which of five steps the term passed, failed, or partially passed. The steps are ordered from most fundamental to most reception-historical:</p>
+
+    <ol>
+      <li><strong>Structural significance.</strong> Is the term structurally important in its co-text — recurrent, conceptually load-bearing, or part of a deliberate intertextual pattern?</li>
+      <li><strong>Co-textual disambiguation.</strong> Does the surrounding text narrow the term's semantic range to a single sense, or does the openness remain active?</li>
+      <li><strong>Lexical equivalence.</strong> Does any single English word preserve the source term's full lexical scope?</li>
+      <li><strong>Translation convention.</strong> Has the standard English rendering accumulated meaning that the source did not yet carry, or does it foreclose features the source preserved?</li>
+      <li><strong>Reception-historical overdetermination.</strong> Has centuries of theological, philosophical, or political reception attached weight to the conventional rendering that postdates the source's compositional horizon?</li>
+    </ol>
+
+    <p>A term passing all five steps is rendered in Mode 1. Failures push the term toward Mode 2 or Mode 3, and the audit panel shows precisely where each step failed and why. Partial passes are tracked separately — they signal real but incomplete equivalence.</p>
+
+    <h2>The apparatus side panel</h2>
+
+    <p>Whenever a Mode 2, Mode 3, or ambiguity marker is clicked, the side panel slides in from the right of the screen. The panel does not interrupt the reading — the reader can continue scrolling the prose while the apparatus is visible. Closing the panel is done by clicking outside it, by pressing Escape, or by clicking the close button.</p>
+
+    <p>The panel always shows: the term itself in Roman characters and source-language script, the mode badge, a one-sentence gloss, a substantive explanatory note, the decision-procedure audit (where applicable), and the axioms the rendering serves.</p>
+
+    <p>For ambiguity markers, the panel shows: the source-language phrase, the grammatical or text-critical context, all readings the source permits, the disambiguation rationale, and the axioms the openness invokes.</p>
+
+    <h2>Cross-book references in commentaries</h2>
+
+    <p>Commentaries cite terms from any book on the site, regardless of which book the commentary belongs to. A commentary on Bereshit D1 can click through to <em>Logos</em> from the Gospel of John, and the same apparatus opens. The methodology is uniform across testaments — only the source language changes.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <a class="page-back-link" href="index.html">
+      <span class="page-back-link-arrow">←</span>
+      <span data-i18n="back_to_reading">Back to reading</span>
+    </a>
+    <span class="page-footer-meta">SPS Theology · Legend</span>
+  </footer>
+
+</main>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg class="search-input-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <input type="text" id="search-input" class="search-input" placeholder="Search terms, passages, commentaries…" autocomplete="off">
+      <button class="search-close" id="search-close" type="button" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+    <div class="search-empty" id="search-empty">Type to search across all books.</div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/books.js"></script>
+<script src="js/books/bereshit.js"></script>
+<script src="js/books/ioanes.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/search.js"></script>
+<script src="js/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legend · SPS Theology · RO</title>
+  <meta name="description"
+    content="The Legend — how to read the SPS apparatus, the three modes, ambiguity markers, and the decision procedure.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Theme bootstrap — applied before <body> renders to prevent flash -->
+  <script>(function(){try{var t=localStorage.getItem('sps:theme');if(t!=='light'&&t!=='dark'&&t!=='warm'){t='light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+
+<body data-page-type="legend">
+
+  <!-- ========== TOP NAVIGATION ========== -->
+  <nav class="topnav" id="topnav">
+    <div class="topnav-inner">
+
+      <!-- Brand -->
+      <a class="nav-brand" href="#" onclick="event.preventDefault();">
+        <span class="nav-brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <!-- Left brace -->
+            <path d="M 12.5 7
+                   C 9.8 7 9.0 8.2 9.0 10.5
+                   L 9.0 14
+                   C 9.0 15.4 8.4 16 7.0 16
+                   C 8.4 16 9.0 16.6 9.0 18
+                   L 9.0 21.5
+                   C 9.0 23.8 9.8 25 12.5 25" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Em-dash -->
+            <line x1="13" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            <!-- Right brace -->
+            <path d="M 19.5 7
+                   C 22.2 7 23.0 8.2 23.0 10.5
+                   L 23.0 14
+                   C 23.0 15.4 23.6 16 25.0 16
+                   C 23.6 16 23.0 16.6 23.0 18
+                   L 23.0 21.5
+                   C 23.0 23.8 22.2 25 19.5 25" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="nav-brand-text">
+          <span class="nav-brand-name">SPS Theology</span>
+          <span class="nav-brand-mark" data-i18n="brand_tagline">Source Preservation Scripture</span>
+        </span>
+      </a>
+
+      <!-- Book selector -->
+      <div class="selector-wrap" id="book-selector-wrap">
+        <button class="selector-btn" id="book-selector-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="selector-btn-eyebrow" data-i18n="selector_book">Book</span>
+          <span class="selector-btn-value" id="book-selector-value">—</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown" id="book-selector-dropdown" role="listbox">
+          <div class="dropdown-header" data-i18n="dropdown_select_book">Select a book</div>
+          <ul class="dropdown-list" id="book-list"></ul>
+        </div>
+      </div>
+
+      <!-- Chapter (toledot) selector -->
+      <div class="selector-wrap" id="chapter-selector-wrap">
+        <button class="selector-btn" id="chapter-selector-btn" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="selector-btn-eyebrow" data-i18n="selector_chapter">Section</span>
+          <span class="selector-btn-value" id="chapter-selector-value">—</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown selector-dropdown-wide" id="chapter-selector-dropdown" role="listbox">
+          <div class="dropdown-header" id="chapter-dropdown-header">—</div>
+          <ul class="dropdown-list" id="chapter-list"></ul>
+        </div>
+      </div>
+
+      <!-- Spacer -->
+      <div class="nav-spacer"></div>
+
+      <!-- Language selector -->
+      <div class="selector-wrap selector-compact" id="lang-selector-wrap">
+        <button class="selector-btn selector-btn-mini" id="lang-selector-btn" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="selector-btn-value" id="lang-selector-value">EN</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown selector-dropdown-mini" id="lang-selector-dropdown" role="listbox">
+          <ul class="dropdown-list" id="lang-list"></ul>
+        </div>
+      </div>
+
+      <!-- Add this inside .topnav-inner, between the language selector and the theme toggle -->
+      <button id="search-toggle" class="search-toggle" type="button" aria-label="Search">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- Quick links -->
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+        <!-- Light icon (shown in dark mode — clicking goes to warm) -->
+        <svg class="icon-light" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+          <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <line x1="8" y1="1.5" x2="8" y2="3" />
+            <line x1="8" y1="13" x2="8" y2="14.5" />
+            <line x1="1.5" y1="8" x2="3" y2="8" />
+            <line x1="13" y1="8" x2="14.5" y2="8" />
+            <line x1="3.4" y1="3.4" x2="4.4" y2="4.4" />
+            <line x1="11.6" y1="11.6" x2="12.6" y2="12.6" />
+            <line x1="3.4" y1="12.6" x2="4.4" y2="11.6" />
+            <line x1="11.6" y1="4.4" x2="12.6" y2="3.4" />
+          </g>
+        </svg>
+        <!-- Dark icon (shown in light mode — clicking goes to dark) -->
+        <svg class="icon-dark" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <path
+            d="M 12.5 9 C 12.0 9.4 11.4 9.6 10.7 9.6 C 8.7 9.6 7.1 8.0 7.1 6.0 C 7.1 5.3 7.3 4.7 7.7 4.2 C 5.5 4.6 3.8 6.5 3.8 8.8 C 3.8 11.4 5.9 13.5 8.5 13.5 C 10.5 13.5 12.2 12.2 12.8 10.4 C 12.7 9.9 12.6 9.4 12.5 9 Z"
+            fill="currentColor" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round" />
+        </svg>
+        <!-- Warm icon (shown in dark mode — clicking goes to light) -->
+        <svg class="icon-warm" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="5" fill="currentColor" opacity="0.5" />
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a class="nav-link" href="about.html" data-i18n="nav_about">About</a>
+        <a class="nav-link" href="legend.html" data-i18n="nav_legend">Legend</a>
+        <a class="nav-link-support" href="https://ko-fi.com/spstheology" target="_blank" rel="noopener" title="Support this project">Donate</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main" id="main" role="main">
+
+    <header class="page-header">
+      <div class="page-eyebrow">
+        <span data-i18n="page_legend_eyebrow">Legend</span>
+      </div>
+      <!-- //// ==== Ro ==== //// -->
+      <h1 class="page-title">How to read the apparatus</h1>
+      <!-- //// ==== Ro ==== //// -->
+      <p class="page-sub">Three modes, ambiguity markers, and the decision procedure they document.</p>
+    </header>
+
+    <article class="page-body">
+
+      <p>SPS in lucru</p>
+
+    </article>
+
+    <footer class="page-footer">
+      <a class="page-back-link" href="index.html">
+        <span class="page-back-link-arrow">←</span>
+        <span data-i18n="back_to_reading">Back to reading</span>
+      </a>
+      <span class="page-footer-meta">SPS Theology · Legend</span>
+    </footer>
+
+  </main>
+
+  <!-- Search overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg class="search-input-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <input type="text" id="search-input" class="search-input" placeholder="Search terms, passages, commentaries…" autocomplete="off">
+      <button class="search-close" id="search-close" type="button" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+    <div class="search-empty" id="search-empty">Type to search across all books.</div>
+  </div>
+</div>
+
+  <script src="js/app.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/books.js"></script>
+  <script src="js/books/bereshit.js"></script>
+  <script src="js/books/ioanes.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/page.js"></script>
+</body>
+
+</html>

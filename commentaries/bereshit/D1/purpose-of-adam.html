@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The purpose of adam in Bereshit D1 · SPS Theology</title>
+  <meta name="description"
+    content="A commentary on the purpose of ha-adam in Bereshit D1, attending to tselem, demut, and yirdu.">
+
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../../../css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem('sps:theme');if(t!=='light'&&t!=='dark'&&t!=='warm'){t='light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+
+</head>
+
+<body data-page-type="commentary" data-book="bereshit" data-section="D1">
+
+  <nav class="topnav" id="topnav">
+    <div class="topnav-inner">
+
+      <!-- Brand -->
+      <a class="nav-brand" href="#" onclick="event.preventDefault();">
+        <span class="nav-brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <!-- Left brace -->
+            <path d="M 12.5 7
+                   C 9.8 7 9.0 8.2 9.0 10.5
+                   L 9.0 14
+                   C 9.0 15.4 8.4 16 7.0 16
+                   C 8.4 16 9.0 16.6 9.0 18
+                   L 9.0 21.5
+                   C 9.0 23.8 9.8 25 12.5 25" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Em-dash -->
+            <line x1="13" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            <!-- Right brace -->
+            <path d="M 19.5 7
+                   C 22.2 7 23.0 8.2 23.0 10.5
+                   L 23.0 14
+                   C 23.0 15.4 23.6 16 25.0 16
+                   C 23.6 16 23.0 16.6 23.0 18
+                   L 23.0 21.5
+                   C 23.0 23.8 22.2 25 19.5 25" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="nav-brand-text">
+          <span class="nav-brand-name">SPS Theology</span>
+          <span class="nav-brand-mark" data-i18n="brand_tagline">Source Preservation Scripture</span>
+        </span>
+      </a>
+
+      <!-- Book selector -->
+      <div class="selector-wrap" id="book-selector-wrap">
+        <button class="selector-btn" id="book-selector-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="selector-btn-eyebrow" data-i18n="selector_book">Book</span>
+          <span class="selector-btn-value" id="book-selector-value">—</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown" id="book-selector-dropdown" role="listbox">
+          <div class="dropdown-header" data-i18n="dropdown_select_book">Select a book</div>
+          <ul class="dropdown-list" id="book-list"></ul>
+        </div>
+      </div>
+
+      <!-- Chapter (toledot) selector -->
+      <div class="selector-wrap" id="chapter-selector-wrap">
+        <button class="selector-btn" id="chapter-selector-btn" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="selector-btn-eyebrow" data-i18n="selector_chapter">Section</span>
+          <span class="selector-btn-value" id="chapter-selector-value">—</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown selector-dropdown-wide" id="chapter-selector-dropdown" role="listbox">
+          <div class="dropdown-header" id="chapter-dropdown-header">—</div>
+          <ul class="dropdown-list" id="chapter-list"></ul>
+        </div>
+      </div>
+
+      <!-- Spacer -->
+      <div class="nav-spacer"></div>
+
+      <!-- Language selector -->
+      <div class="selector-wrap selector-compact" id="lang-selector-wrap">
+        <button class="selector-btn selector-btn-mini" id="lang-selector-btn" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="selector-btn-value" id="lang-selector-value">EN</span>
+          <span class="selector-btn-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="selector-dropdown selector-dropdown-mini" id="lang-selector-dropdown" role="listbox">
+          <ul class="dropdown-list" id="lang-list"></ul>
+        </div>
+      </div>
+
+      <!-- Add this inside .topnav-inner, between the language selector and the theme toggle -->
+      <button id="search-toggle" class="search-toggle" type="button" aria-label="Search">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- Quick links -->
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+        <!-- Light icon (shown in dark mode — clicking goes to warm) -->
+        <svg class="icon-light" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+          <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <line x1="8" y1="1.5" x2="8" y2="3" />
+            <line x1="8" y1="13" x2="8" y2="14.5" />
+            <line x1="1.5" y1="8" x2="3" y2="8" />
+            <line x1="13" y1="8" x2="14.5" y2="8" />
+            <line x1="3.4" y1="3.4" x2="4.4" y2="4.4" />
+            <line x1="11.6" y1="11.6" x2="12.6" y2="12.6" />
+            <line x1="3.4" y1="12.6" x2="4.4" y2="11.6" />
+            <line x1="11.6" y1="4.4" x2="12.6" y2="3.4" />
+          </g>
+        </svg>
+        <!-- Dark icon (shown in light mode — clicking goes to dark) -->
+        <svg class="icon-dark" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <path
+            d="M 12.5 9 C 12.0 9.4 11.4 9.6 10.7 9.6 C 8.7 9.6 7.1 8.0 7.1 6.0 C 7.1 5.3 7.3 4.7 7.7 4.2 C 5.5 4.6 3.8 6.5 3.8 8.8 C 3.8 11.4 5.9 13.5 8.5 13.5 C 10.5 13.5 12.2 12.2 12.8 10.4 C 12.7 9.9 12.6 9.4 12.5 9 Z"
+            fill="currentColor" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round" />
+        </svg>
+        <!-- Warm icon (shown in dark mode — clicking goes to light) -->
+        <svg class="icon-warm" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="5" fill="currentColor" opacity="0.5" />
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a class="nav-link" href="../../../about.html" data-i18n="nav_about">About</a>
+        <a class="nav-link" href="../../../legend.html" data-i18n="nav_legend">Legend</a>
+        <a class="nav-link-support" href="https://ko-fi.com/spstheology" target="_blank" rel="noopener" title="Support this project">Donate</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main" id="main" role="main">
+
+    <header class="page-header">
+      <div class="page-eyebrow">
+        <span data-i18n="page_commentary_eyebrow">Commentary</span>
+        <span class="page-eyebrow-sep">·</span>
+        <span>Bereshit</span>
+        <span class="page-eyebrow-sep">·</span>
+        <span>D1</span>
+        <span class="page-eyebrow-sep">·</span>
+        <span>Gen 1:1 – 2:3</span>
+      </div>
+      <h1 class="page-title">The Purpose of adam in Bereshit D1</h1>
+      <p class="page-sub">A forensic reading of <em>tselem</em>, <em>demut</em>, <em>yirdu</em>, and <em>kivshuha</em>:
+        the cosmic investiture of humanity.</p>
+    </header>
+
+    <article class="page-body">
+
+      <div class="callout info">
+        <div class="callout-title">Terminology note</div>
+        <p>Throughout this commentary, <em>adam</em> (uncapitalized, following the Hebrew convention where no capital
+          letters exist) denotes humanity as a collective — the human species, mankind. <em>ha-adam</em> ("the adam")
+          denotes the human individual or the human as a specific referent, depending on context. Where the Hebrew text
+          uses the definite article, the commentary does the same. The divine name is rendered <strong>YHWH</strong>
+          (capitalized), following the SPS convention of preserving the tetragrammaton rather than substituting "LORD."
+          All other transliterated Hebrew terms appear in lowercase — <em>elohim</em>, <em>tselem</em>,
+          <em>demut</em>, <em>yirdu</em>, <em>kivshuha</em> — echoing the uncial script of the source language.
+        </p>
+      </div>
+
+      <p class="page-body-lead">When Bereshit D1 introduces humanity in p20-22 (Gen 1:26-28), it does not introduce
+        <em>persons</em> in the modern psychological sense. It introduces a <em>function</em> — a cosmic office
+        established by divine decree. To understand what is happening, we must recover the Ancient Near Eastern legal,
+        ritual, and ontological frameworks that give these terms their original technical weight. This is a
+        jurisdictional text, not a philosophical one.
+      </p>
+
+      <h2>The Decree</h2>
+
+      <div class="verse-cite">
+        <span class="verse-cite-ref">Bereshit D1 · Gen 1:26-28</span>
+        Then <em>elohim</em> said: "<em>Let us make adam</em> in our <em>tselem</em> and according to our
+        <em>demut</em>; and let them <em>yirdu</em> over the fish of the sea, the birds of the <em>shamaim</em>, the
+        cattle, the whole earth, and every creeping thing."<br>
+        So <em>elohim</em> created <em>ha-adam</em> in his <em>tselem</em>; in the <em>tselem</em> of <em>elohim</em> he
+        created him; male and female he created them.<br>
+        And <em>elohim</em> blessed them; and <em>elohim</em> said to them: "Be fruitful and multiply; fill the earth
+        and <em>kivshuha</em>; and <em>yirdu</em> over every living thing that moves on the earth."
+      </div>
+
+      <h2>1. The Divine Council (<em>na'aseh</em>): A Matter of Cosmic Law</h2>
+
+      <p>The phrase <em>"Let us make"</em> is not a rhetorical flourish, nor is it a veiled reference to later
+        Trinitarian doctrine. In its own Ancient Near Eastern context, it references the <strong>Divine
+          Assembly</strong> — the heavenly host that serves as the Creator's court.</p>
+
+      <p>We see this council operating throughout the Hebrew Bible. Tehilim D82.p1 (Psalms 82:1) declares that "elohim
+        stands in the divine assembly; in the midst of the <em>elohim</em> he holds judgment." Job 1:6 describes a day
+        when "the sons of <em>elohim</em> came to present themselves before YHWH." The prophet Micaiah ben Imlah sees
+        "YHWH sitting on his throne, and all the host of heaven standing beside him" (1 Kings 22:19). Isaiah witnesses
+        the <em>seraphim</em> attending the throne (Isaiah 6). This is the governmental structure of the heavens in the
+        biblical imagination.</p>
+
+      <p><strong>Forensic Context:</strong> By consulting this council, <em>elohim</em> makes the creation of
+        <em>adam</em> a matter of <strong>recorded cosmic statute</strong>. This is not a private act of divine
+        craftsmanship; it is a public investiture before the entire spiritual government. <em>adam</em> is introduced
+        to the heavenly powers not merely as a creature among creatures, but as a newly appointed dignitary — a
+        representative whose authority derives from and reports to this higher jurisdiction.
+      </p>
+
+      <p><strong>Implication:</strong> <em>adam</em> is vetted and acknowledged by the heavens. <em>adam</em>'s
+        authority on earth is not self-generated; it is <em>delegated</em>, <em>witnessed</em>, and
+        <em>accountable</em>. The creation of <em>adam</em> (humanity) is, from its first moment, a <em>legal
+          event</em> within a cosmic governmental structure.
+      </p>
+
+      <p>This forensic framing is essential for everything that follows in Genesis. When the <em>nahash</em> approaches
+        the woman in Bereshit D2.p21 (Genesis 3:1), the question is not merely whether she will eat a piece of fruit.
+        The question is whether <em>adam</em> (humanity) will remain loyal to the jurisdiction that appointed it, or
+        whether it will defect to a rival authority. The entire drama of Bereshit D2.p21–D8 (Genesis 3–11) — qayin,
+        the flood, bavel — is a legal drama about covenantal fidelity within a cosmic government.</p>
+
+      <h2>2. <em>tselem</em> (Image): The Living Cult Statue</h2>
+
+      <p>The standard English "image" comes through the Latin <em>imago</em> and carries with it sixteen centuries of
+        theological elaboration — the <em>imago Dei</em> tradition running from Irenaeus through Augustine through
+        Aquinas through the Reformers to modern systematic theology. By the time a modern reader sees "image of God,"
+        the term has accumulated content the Hebrew did not yet bear: substantive personhood, rational soul, moral
+        capacity, freedom of will — a list of abstract <em>properties</em> supposedly distinguishing humans from
+        animals.</p>
+
+      <p>The Hebrew <em>tselem</em> is far more concrete. In its other biblical occurrences, <em>tselem</em>
+        consistently denotes a physical statue or relief — a manufactured object that represents something else: the
+        cast images of Baal torn down in 2 Kings 11:18, the gold tumours and mice the Philistines made as guilt
+        offerings in 1 Samuel 6:5, the bronze image of Nebuchadnezzar's dream in Daniel 2.</p>
+
+      <p>The Akkadian cognate <em>ṣalmu</em> provides the decisive cultural context. Throughout Mesopotamia in the
+        second and first millennia BC, a <em>ṣalmu</em> was the <strong>royal image-statue</strong>: a physical
+        representation of the king, manufactured and placed in distant provinces or conquered territories. The purpose
+        was not decorative. The statue <em>made the king's rule present</em> where the king himself was not physically
+        located.</p>
+
+      <div class="callout">
+        <div class="callout-title">ANE background</div>
+        <p>The Akkadian term <em>ṣalmu</em> (cognate to Hebrew <em>tselem</em>) appears in Neo-Assyrian royal
+          inscriptions with the specific sense of "royal statue" — a physical representation of the king placed in a
+          distant province to mark it as territory under his dominion. The statue was not a likeness in the sense of
+          portraiture; it was a <em>presence</em>. When Genesis takes this term and applies it to <em>adam</em> in
+          relation to the Creator, it makes an ANE-political claim about what humanity <em>is for</em>: to be the
+          Creator's governing presence in creation.</p>
+      </div>
+
+      <p><strong>The Presence Mechanism:</strong> The statue was the <strong>legal embodiment</strong> of the
+        sovereign's presence and authority. To honor the statue was to honor the king. To deface the statue was to
+        declare rebellion against the king. The statue was a territorial marker that established the king's claim over
+        that region.</p>
+
+      <p><strong>The Shift in Bereshit:</strong> Here, Bereshit takes this familiar ANE practice and performs a radical
+        reconfiguration. The "statue" is not made of wood, stone, or metal. The statue is <em>living flesh</em>.
+        <em>ha-adam</em> is the <strong>animated cult image</strong> of <em>elohim</em>, planted on Earth to make the
+        invisible sovereignty of YHWH visible, tangible, and operational within the material realm.
+      </p>
+
+      <p><strong>Forensic Purpose:</strong> The <em>tselem</em> grants <strong>territorial rights</strong>. Where the
+        image is placed, the king's claim is established. Earth is not neutral territory; it is claimed territory.
+        <em>adam</em>'s very existence on the planet is the Creator's declaration that this realm belongs to Him. This
+        is not about <em>adam</em> <em>resembling</em> YHWH <em>elohim</em> in some abstract sense; it is about
+        <em>adam</em> (humanity) <em>representing</em> YHWH — making divine authority <em>present</em> on earth, the
+        way an Assyrian king's image made royal authority present in a distant province.
+      </p>
+
+      <p>Therefore, <em>adam</em> (humanity) is not a passive recipient of divine attributes; <em>adam</em> is an active
+        agent of divine governance. The image is not a static status; it is a dynamic function. To be the
+        <em>tselem</em> of <em>elohim</em> is to be the living, governing presence of the Creator on Earth — the one
+        through whom the Creator's will is executed and whose actions carry the weight of divine authority.
+      </p>
+
+      <h2>3. <em>demut</em> (Likeness): The Internal Warrant of Authority</h2>
+
+      <p>If <em>tselem</em> is the external "statue" — the visible, physical placement of the representative —
+        <em>demut</em> is the <strong>internal charter</strong> that backs the statue's claim.
+      </p>
+
+      <p><strong>Genetic/Legal Link:</strong> In Ancient Near Eastern genealogies, a son who is in his father's
+        <em>demut</em> carries his father's lineage and legal standing. Genesis 5:3 uses this exact term when it says
+        that <em>adam</em> "fathered a son in his own likeness (<em>bidmuto</em>), after his image
+        (<em>ketsalmo</em>)." The language of <em>tselem</em> and <em>demut</em> is therefore not unique to humanity's
+        relationship to YHWH; it is the normal language of sonship, inheritance, and legal succession.
+      </p>
+
+      <p>The two terms — <em>tselem</em> and <em>demut</em> — function as a <strong>hendiadys</strong>: a single
+        conceptual unit expressed through two related words. <em>tselem</em> alone might suggest mere physical
+        placement (the statue is here); <em>demut</em> qualifies it by specifying the <em>relationship</em> between
+        the statue and the one it represents.</p>
+
+      <p><strong>Forensic Interpretation:</strong> <em>demut</em> signifies <strong>inherited operational
+          capacity</strong>. It is the "YHWH-like" cognitive and moral endowment — the capacity for reason, moral
+        judgment, creative speech, and covenantal relationship — that enables <em>adam</em> to execute his vice-regal
+        duties in a manner consistent with the Sovereign's character. A son sent to manage his father's estate does
+        not need to <em>be</em> his father; he needs to carry his father's authority and to act in a manner consistent
+        with his father's interests and character. <em>demut</em> is the warrant that makes the <em>tselem</em>'s
+        claim legitimate and operational.</p>
+
+      <div class="table-wrap">
+        <table class="compact responsive-card">
+          <thead>
+            <tr>
+              <th class="center">Term</th>
+              <th class="center">Hebrew</th>
+              <th class="center">ANE register</th>
+              <th class="center">Function in Gen 1:26</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Term"><em>tselem</em></td>
+              <td data-label="Hebrew"><span class="heb">צֶלֶם</span></td>
+              <td data-label="ANE register">Physical statue; royal image representing authority</td>
+              <td data-label="Function">Humanity as the placed representative</td>
+            </tr>
+            <tr>
+              <td data-label="Term"><em>demut</em></td>
+              <td data-label="Hebrew"><span class="heb">דְּמוּת</span></td>
+              <td data-label="ANE register">Resemblance; model; correspondence-relation</td>
+              <td data-label="Function">Humanity as corresponding to the One represented</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>4. <em>yirdu</em> (Rule) and <em>kivshuha</em> (Subdue): The Scope of the Commission</h2>
+
+      <p>The verb <em>yirdu</em> — usually translated "have dominion" or "rule" — is the operative claim. The entire
+        image-language exists <em>so that</em> <em>ha-adam</em> can perform this function. The purpose is the image;
+        the image is the purpose.</p>
+
+      <p><strong><em>yirdu</em>:</strong> This verb denotes the rule of a <strong>shepherd-king</strong> — authority
+        exercised for the benefit and good order of the governed. It is stewardship, not exploitation. The image of
+        the shepherd is crucial: a shepherd rules the flock not for his own benefit but for theirs. He leads them to
+        pasture, protects them from predators, and ensures their flourishing. His authority is real, but it is
+        <em>for</em> the flock, not <em>against</em> it. Standard English "dominion" has accumulated colonial and
+        exploitative connotations from centuries of empire that the Hebrew verb does not carry.
+      </p>
+
+      <div class="callout warning">
+        <div class="callout-title">Translation hazard</div>
+        <p>The English "dominion" (KJV, NRSV) and "rule" (NIV, ESV) both import political connotations that the Hebrew
+          <em>r-d-h</em> does not intrinsically carry. In the Hebrew Bible, this root governs shepherds over flocks
+          (Ezek 34:4), priests over the sanctuary (Lev 25:43, 46, 53 — where the same root appears in the context of
+          how one may not <em>rule harshly</em>), and the ideal king over a peaceable realm (1 Kgs 5:4, of Solomon).
+          The register is custodial governance, not extraction or domination.
+        </p>
+      </div>
+
+      <p><strong><em>kivshuha</em>:</strong> This is a <strong>land-grant term</strong>, meaning literally to "bring
+        under the heel." It acknowledges that the Earth is a raw, untamed estate — not yet the ordered sanctuary it is
+        destined to become. The command implies a <strong>transformational task</strong>: humanity is to cultivate the
+        wildness, to bring order out of chaos, until the entire planet reflects the order, beauty, and fruitfulness of
+        the Garden-sanctuary — its intended "Edenic state."</p>
+
+      <p>The two verbs together define the full scope of the commission. <em>yirdu</em> is the ongoing governance — the
+        continuous exercise of shepherd-king authority. <em>kivshuha</em> is the initial and continuing work of
+        transformation — bringing the raw material of creation to its full flourishing under divine sovereignty.
+        Humanity is placed on Earth as the Creator's administrative presence, charged with both governing and
+        cultivating the realm.</p>
+
+      <h2>5. The "Male and Female" Necessity: Completing the <em>tselem</em></h2>
+
+      <p>D.p21 (verse 27) specifies that <em>ha-adam</em> was created "male and female." This is not an afterthought or
+        a secondary detail. It is a <strong>forensic necessity</strong> for a complete representation of the Creator's
+        governance.</p>
+
+      <p><strong>The Divine Council as Plurality:</strong> The "us" of p20 (verse 26) implies relational plurality
+        within unity at the level of divine governance. The Divine Council operates through relationship,
+        collaboration, and differentiated roles within a unified purpose. A singular, isolated human could not
+        iconographically reflect this reality. A solitary human would be a defective image — a partial representation
+        that fails to communicate the relational nature of the appointing authority.</p>
+
+      <p><strong><em>tselem</em> as Relational Entity:</strong> In Ancient Near Eastern diplomatic practice, treaties
+        between nations were often symbolized by paired statues — two figures standing together, representing the
+        covenant between two parties. Male and female together become the <strong>living icon of covenant
+          relationship</strong>. They model differentiation-in-unity: two distinct persons, with distinct capacities
+        and perspectives, bound together in a collaborative purpose that neither could fulfill alone.</p>
+
+      <p><strong>Full-Spectrum Representation:</strong> The duality of male and female allows humanity to embody a
+        fuller spectrum of divine attributes — strength and nurture, justice and mercy, initiation and reception. Their
+        "one flesh" union (D2.p20 / Genesis 2:24) becomes the <strong>fundamental operational unit</strong> for
+        fulfilling the dominion mandate: the basic cell of the colony of heaven on earth.</p>
+
+      <p>The blessing "be fruitful and multiply" is therefore not merely biological. It is <em>administrative</em>. To
+        fill the earth with image-bearers is to fill the earth with the Creator's representative presence — to
+        replicate the colony until the entire territory is governed. Every new human being is a new outpost of divine
+        administration, a new living statue extending the Creator's claim across the untamed earth.</p>
+
+      <h2>6. Synthesis: The Priestly-Administrative Vocation</h2>
+
+      <p>Combining all these elements, the picture that emerges is unmistakably
+        <strong>priestly-administrative</strong>.
+        <em>ha-adam</em> is created to be the Creator's <em>tselem</em>-bearing presence on earth — placed in the
+        world as the royal statue is placed in the province, equipped with the inherited operational capacity
+        (<em>demut</em>) to function effectively, and charged with administering the realm (<em>yirdu</em>) and
+        transforming its rawness into ordered flourishing (<em>kivshuha</em>).
+      </p>
+
+      <p>This connects directly to the second toledot in Bereshit D2, where <em>ha-adam</em> is placed in the garden and
+        given the task of <em>avad</em> and <em>shamar</em> — "to serve and to keep." Those two verbs are, elsewhere
+        in the Hebrew Bible, <strong>technical terms for the priestly service of the Tabernacle</strong>. The priests
+        "serve" (<em>avad</em>) in the sanctuary and "keep" (<em>shamar</em>) its ordinances and boundaries (Numbers
+        3:7-8; 8:26; 18:5-6). The garden is being framed as a sanctuary; <em>ha-adam</em> is being framed as its
+        priest. The cosmic-administrative function announced in D1 is given concrete, local expression in D2.</p>
+
+      <!-- Eden–Tabernacle structural parallels -->
+      <figure>
+        <div class="table-wrap">
+          <table class="compact responsive-card">
+            <thead>
+              <tr>
+                <th class="center">Feature</th>
+                <th class="center">Eden (Gen 2–3)</th>
+                <th class="center">Tabernacle / Temple</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Feature">Sacred space</td>
+                <td data-label="Eden">Garden planted by YHWH, in the east</td>
+                <td data-label="Tabernacle / Temple">Courtyard, Holy Place, Holy of Holies</td>
+              </tr>
+              <tr>
+                <td data-label="Feature">Divine presence</td>
+                <td data-label="Eden">YHWH <em>elohim</em> walking in the garden (Gen 3:8)</td>
+                <td data-label="Tabernacle / Temple"><em>kavod</em> / <em>doxa</em> filling the sanctuary (Exod
+                  40:34–35)</td>
+              </tr>
+              <tr>
+                <td data-label="Feature">Human role</td>
+                <td data-label="Eden"><em>ha-adam</em> as <em>avad-shamar</em> — to work and to keep (Gen 2:15)</td>
+                <td data-label="Tabernacle / Temple">Levitical priests as <em>avad-shamar</em> (Num 3:7–8)</td>
+              </tr>
+              <tr>
+                <td data-label="Feature">Guardians</td>
+                <td data-label="Eden"><em>keruvim</em> guarding the entrance (Gen 3:24)</td>
+                <td data-label="Tabernacle / Temple"><em>keruvim</em> flanking the Ark (Exod 25:18–22)</td>
+              </tr>
+              <tr>
+                <td data-label="Feature">Access</td>
+                <td data-label="Eden">Humanity expelled; entrance guarded</td>
+                <td data-label="Tabernacle / Temple">Only High Priest enters Holy of Holies, once a year</td>
+              </tr>
+              <tr>
+                <td data-label="Feature">Tree / Lampstand</td>
+                <td data-label="Eden">Tree of life in the midst of the garden (Gen 2:9)</td>
+                <td data-label="Tabernacle / Temple">Menorah — almond-tree lampstand (Exod 25:31–40)</td>
+              </tr>
+              <tr>
+                <td data-label="Feature">Eastward orientation</td>
+                <td data-label="Eden">Garden in the east; entrance guarded on the east (Gen 2:8, 3:24)</td>
+                <td data-label="Tabernacle / Temple">Tabernacle entrance on the east (Exod 27:13–16)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption>Structural parallels between Eden and the later sanctuary institutions. Not every parallel needs to
+          be pressed; the pattern is that Genesis 2–3 presents Eden with the vocabulary and architecture of sacred
+          space, and humanity with a priestly vocation.</figcaption>
+      </figure>
+
+      <h2>7. What This Changes for Reading the Rest of the Biblical Narrative</h2>
+
+      <p>Once humanity's purpose is set this way — as the Creator's <em>tselem</em>-bearing administrator in a creation
+        framed as sanctuary — the narrative shape of Bereshit D2.p21 (Genesis 3) onward becomes legible as the
+        disruption of <em>this specific function</em> and the long arc of its recovery.</p>
+
+      <p><strong>The Transgression as Administrative Failure:</strong> The transgression in Bereshit D2 (Genesis 3) is
+        not primarily a moral failure in the abstract — a violation of an arbitrary rule. It is a <strong>failure of
+          administrative trust</strong>, a refusal of the priestly vocation, a forfeit of the office for which
+        <em>ha-adam</em> was made. The <em>nahash</em> approaches the woman not with a temptation to generic sin but
+        with a challenge to the jurisdictional structure itself: "Did <em>elohim</em> really say…?" The question is
+        designed to undermine trust in the appointing authority. The transgression is a breach of covenantal fidelity
+        within the cosmic government.
+      </p>
+
+      <p><strong>The Expulsion as Loss of Sanctuary:</strong> The expulsion from the garden is the loss of the sanctuary
+        — the forfeiture of the priestly station. The placement of the <em>keruvim</em> at the garden's entrance is
+        devastatingly precise: these guardian beings, familiar from Ancient Near Eastern iconography as composite
+        winged creatures that flank divine thrones, now replace the priestly humanity. The same figures that guard the
+        Ark of the Covenant in the Tabernacle and Temple now mark divine presence as inaccessible to the very beings
+        who were made to dwell in it.</p>
+
+      <p><strong>The Arc of Recovery:</strong> The whole narrative arc that follows — qayin's murder and exile, the
+        violence leading to the flood, the scattering at bavel, the call of avram — is the question of how the
+        priestly-administrative function, lost in eden, is to be recovered.</p>
+
+      <p>Israel's vocation as a "kingdom of priests and a holy nation" (Exodus 19:6) is the answer the Torah eventually
+        gives: where humanity in general failed, this particular people will carry the function. They will be the
+        Creator's <em>tselem</em>-bearing administrators in microcosm, a "light to the nations" (Isaiah 42:6) that
+        models what restored humanity looks like. The Tabernacle and later the Temple become the restored
+        garden-sanctuary, with the Levitical priesthood standing in the place of <em>ha-adam</em>. The entire priestly
+        system of the Torah is a <strong>temporary reinstatement</strong> of the original human vocation, administered
+        by a particular tribe until the function can be restored to humanity as a whole.</p>
+
+      <p>The New Testament will take the question further. 1 Peter 2:9 declares that those who are in
+        <em>christos</em> form a "royal priesthood" — the recovered humanity, the original <em>tselem</em>-bearing
+        community restored to its administrative function. Paul's language of the "new adam" (1 Corinthians 15:45;
+        Romans 5:12-21) operates within this same framework: <em>christos</em> is the one who succeeds where the first
+        <em>adam</em> failed, and those united to him participate in the restored vocation.
+      </p>
+
+      <p>But the question itself is set in Bereshit D1, before there is sin, before there is redemption, before there is
+        Israel or Church or eschatology. There is only this: <strong>What is humanity <em>for</em>?</strong> And the
+        answer is: to be the Creator's living <em>tselem</em> — the visible presence of invisible sovereignty — the
+        administrator of a creation destined to become a sanctuary, the representation of his Creator's character.</p>
+
+      <div class="divider">✻ ✻ ✻</div>
+
+      <h2>What Is <em>Not</em> Said</h2>
+
+      <p>It is worth noting — clearly and emphatically — what Bereshit D1 and the creation account of D2 do
+        <em>not</em> say about <em>adam</em> (humanity). Many concepts that later theology has considered central to
+        the doctrine of humanity are simply absent from the Bereshit text:
+      </p>
+
+      <ul>
+        <li><strong>It does not say humanity has an immortal soul.</strong> <em>ha-adam</em> is constituted from the
+          <em>aphar</em> and returns to the <em>aphar</em>. The <em>nephesh</em> is not an immaterial substance that
+          survives death; it is the living self, the unified breathing-desiring-acting being. Resurrection in the
+          Hebrew Bible is not the release of a soul from a body but the reconstitution of the whole person by divine
+          power (for this see the commentary on Bereshit D2.p20 / Genesis 2:7).
+        </li>
+        <li><strong>It does not say humanity is rational where animals are not.</strong> The capacity for discernment,
+          moral judgment, and covenantal relationship — what <em>demut</em> signifies — is framed as an inherited
+          operational capacity for the administrative task, not a metaphysical property that defines human
+          "substance."</li>
+        <li><strong>It does not ground human dignity in any inherent quality.</strong> What gives humanity its unique
+          status is not something humans <em>are</em> but something they are <em>appointed to do</em>. The dignity is
+          positional and functional, not intrinsic — which means it is also recoverable if lost.</li>
+      </ul>
+
+      <p>These are claims that have been read <em>into</em> the text from later philosophical sources — Platonic,
+        Aristotelian, and Stoic concepts absorbed into Christian and Jewish theology during the Hellenistic period and
+        beyond. To read Bereshit (Genesis) in its own Ancient Near Eastern context is to recover a vision of
+        <em>adam</em> (humanity) that is at once more concrete and more exalted than the philosophical tradition has
+        often allowed: not beings with souls temporarily housed in bodies, but <strong>living
+          <em>tselem</em>-s</strong> — animated statues of the Creator, placed on Earth to administer a realm destined
+        to become a sanctuary, commissioned in the presence of the Divine Council, and charged with a task whose
+        recovery drives the entire biblical narrative.
+      </p>
+
+      <p>What Bereshit D1 says about humanity is <strong>functional</strong>, <strong>relational</strong>, and
+        <strong>administrative</strong>: <em>ha-adam</em> is made in <em>tselem</em>, after <em>demut</em>, in order
+        to <em>yirdu</em> and <em>kivshuha</em>. The purpose is the image; the image is the purpose. Once that is
+        heard, the rest of the Bible reads differently — and the question "What are human beings <em>for</em>?"
+        receives an answer rooted not in philosophical speculation but in the opening decree of the cosmic King,
+        publicly issued before the governing powers of heaven.
+      </p>
+
+      <hr>
+
+      <div class="footnotes">
+        <ol>
+          <li id="fn1">On the Akkadian cognate <em>ṣalmu</em>, see C. L. Crouch, "Genesis 1:26–7 as a Statement of
+            Humanity's Divine Parentage," <em>Journal of Theological Studies</em> 61 (2010): 1–15; and W. Randall Garr,
+            <em>In His Own Image and Likeness: Humanity, Divinity, and Monotheism</em> (Leiden: Brill, 2003), 117–166.
+          </li>
+          <li id="fn2">The Eden–Tabernacle structural parallel was first developed at length by G. K. Beale, <em>The
+              Temple and the Church's Mission</em> (Downers Grove: IVP, 2004), 66–80. The argument here shares the
+            observation that the lexical field of Gen 2–3 is priestly-sanctuary vocabulary.</li>
+          <li id="fn3">On <em>nephesh</em> and the absence of body/soul dualism in Hebrew anthropology, see Hans
+            Walter Wolff, <em>Anthropology of the Old Testament</em> (Philadelphia: Fortress, 1974), 7–25; and Robert
+            Di Vito, "Old Testament Anthropology and the Construction of Personal Identity," <em>Catholic Biblical
+              Quarterly</em> 61 (1999): 217–38.</li>
+        </ol>
+      </div>
+
+    </article>
+
+    <footer class="page-footer">
+      <a class="page-back-link" href="../../../index.html#bereshit/D1">
+        <span class="page-back-link-arrow">←</span>
+        <span data-i18n="back_to_reading">Back to reading</span>
+        <span> · Bereshit D1</span>
+      </a>
+      <span class="page-footer-meta">SPS Theology · Commentary</span>
+    </footer>
+
+  </main>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg class="search-input-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <input type="text" id="search-input" class="search-input" placeholder="Search terms, passages, commentaries…" autocomplete="off">
+      <button class="search-close" id="search-close" type="button" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+    <div class="search-empty" id="search-empty">Type to search across all books.</div>
+  </div>
+</div>
+
+  <script src="../../../js/app.js"></script>
+  <script src="../../../js/i18n.js"></script>
+  <script src="../../../js/books.js"></script>
+  <script src="../../../js/books/bereshit.js"></script>
+  <script src="../../../js/books/ioanes.js"></script>
+  <script src="../../../js/ui.js"></script>
+  <script src="../../../js/search.js"></script>
+  <script src="../../../js/page.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,3526 @@
+/* ============================================================
+   SPS Theology — stylesheet
+   Professional palette with dark-red (wine) accents.
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f5f5f4;
+  --surface-3: #ebe9e6;
+  --surface-soft: var(--surface-2);
+  /* alias used by some components */
+  --surface-hover: var(--accent-wash);
+  /* hover tint = subtle wine */
+
+  /* Ink */
+  --ink: #1c1917;
+  --ink-strong: #0c0a09;
+  --ink-muted: #57534e;
+  --ink-soft: #78716c;
+  --ink-faint: #a8a29e;
+
+  /* Rules */
+  --rule: #e7e5e4;
+  --rule-soft: #f0eeec;
+  --rule-strong: #d6d3d1;
+
+  /* Accent — dark red / wine (the signature) */
+  --accent: #7f1d1d;
+  /* deep wine */
+  --accent-bright: #991b1b;
+  /* hover */
+  --accent-deep: #5e1414;
+  /* pressed */
+  --accent-soft: #b91c1c;
+  /* lighter siblings */
+  --accent-wash: #fef2f2;
+  /* tint background */
+  --accent-wash-2: #fee2e2;
+  /* slightly stronger tint */
+  --accent-rule: #fecaca;
+  /* tinted rule */
+
+  /* Mode washes (kept understated) */
+  --mode2-wash: #f5f4f1;
+  --mode3-wash: #fef2f2;
+
+  /* Status colours for the decision-procedure table */
+  --status-pass: #166534;
+  /* deep green */
+  --status-partial: #92400e;
+  /* amber */
+  --status-fail: var(--accent);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.05);
+  --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08);
+  --shadow-lg: 0 12px 36px rgba(28, 25, 23, 0.14);
+  --shadow-panel: 0 10px 60px rgba(28, 25, 23, 0.18);
+
+  /* Type */
+  --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', monospace;
+  --font-heb: 'SBL Hebrew', 'Ezra SIL', 'Times New Roman', serif;
+  --font-grk: 'SBL Greek', 'Times New Roman', serif;
+
+  /* Layout */
+  --read-max: 1400px;
+  /* hard cap; below this, column is 90vw */
+  --nav-h: 64px;
+  --radius-sm: 3px;
+  --radius: 5px;
+  --radius-lg: 8px;
+}
+
+/* ============================================================
+   DARK THEME
+   True dark — neutral charcoal base, no brown/sepia warmth.
+   ============================================================ */
+:root[data-theme="dark"] {
+  /* Surfaces — neutral near-black to charcoal */
+  --bg: #0f0f0f;
+  /* page — true near-black */
+  --surface: #1a1a1a;
+  /* panels, cards */
+  --surface-2: #242424;
+  /* hover / nested */
+  --surface-3: #2e2e2e;
+  /* active rows */
+  --surface-soft: var(--surface-2);
+  --surface-hover: #2a1a1a;
+  /* keeps wine tint on hover only */
+
+  /* Ink — cool off-white, slightly blue-tinted for neutrality */
+  --ink: #e0e0e0;
+  /* body text */
+  --ink-strong: #f5f5f5;
+  /* headings */
+  --ink-muted: #a0a0a0;
+  /* secondary text */
+  --ink-soft: #808080;
+  /* tertiary */
+  --ink-faint: #606060;
+  /* captions */
+
+  /* Rules — neutral grays */
+  --rule: #2a2a2a;
+  --rule-soft: #1f1f1f;
+  --rule-strong: #383838;
+
+  /* Wine accent — kept but slightly cooled */
+  --accent: #c75858;
+  --accent-bright: #d97070;
+  --accent-deep: #a04545;
+  --accent-soft: #e07878;
+  --accent-wash: #261818;
+  /* darkened tint */
+  --accent-wash-2: #301e1e;
+  --accent-rule: #4a2e2e;
+
+  /* Mode washes */
+  --mode2-wash: #1e1e1e;
+  --mode3-wash: #261818;
+
+  /* Status — keep for readability */
+  --status-pass: #4ade80;
+  --status-partial: #fbbf24;
+  --status-fail: var(--accent);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.6);
+  --shadow-panel: 0 10px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* ============================================================
+   WARM DARK THEME
+   The original brownish dark — warmer, sepia-adjacent.
+   Activated by data-theme="warm" on <html>.
+   ============================================================ */
+:root[data-theme="warm"] {
+  /* Surfaces — warm brown-blacks */
+  --bg: #1a1816;
+  --surface: #252220;
+  --surface-2: #2c2825;
+  --surface-3: #383330;
+  --surface-soft: var(--surface-2);
+  --surface-hover: var(--accent-wash);
+
+  /* Ink — warm off-white, paper-by-candlelight */
+  --ink: #e8e2d6;
+  --ink-strong: #f7f3ea;
+  --ink-muted: #b8b0a0;
+  --ink-soft: #908778;
+  --ink-faint: #6a6358;
+
+  /* Rules */
+  --rule: #3a3531;
+  --rule-soft: #2e2a26;
+  --rule-strong: #4a443e;
+
+  /* Wine accent */
+  --accent: #c75858;
+  --accent-bright: #d97070;
+  --accent-deep: #a04545;
+  --accent-soft: #e07878;
+  --accent-wash: #2e1f1f;
+  --accent-wash-2: #3a2424;
+  --accent-rule: #5a2e2e;
+
+  /* Mode washes */
+  --mode2-wash: #2a2724;
+  --mode3-wash: #2e1f1f;
+
+  /* Status colors */
+  --status-pass: #4ade80;
+  --status-partial: #fbbf24;
+  --status-fail: var(--accent);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.45);
+  --shadow-panel: 0 10px 60px rgba(0, 0, 0, 0.55);
+}
+
+/* Warm dark component refinements */
+:root[data-theme="warm"] .m3 {
+  text-decoration-color: var(--accent-soft);
+}
+
+:root[data-theme="warm"] .m2-apparatus .heb,
+:root[data-theme="warm"] .m2-apparatus .grk {
+  color: var(--ink-soft);
+}
+
+:root[data-theme="warm"] ::selection {
+  background: rgba(199, 88, 88, 0.32);
+  color: var(--ink-strong);
+}
+
+:root[data-theme="warm"] .step-result.pass {
+  background: rgba(74, 222, 128, 0.12);
+}
+
+:root[data-theme="warm"] .step-result.partial {
+  background: rgba(251, 191, 36, 0.14);
+}
+
+:root[data-theme="warm"] .step-result.fail {
+  background: rgba(199, 88, 88, 0.18);
+}
+
+:root[data-theme="warm"] .nav-brand-logo {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme="warm"] .page-body .verse-cite {
+  background: var(--surface);
+  border-left-color: var(--accent-soft);
+}
+
+:root[data-theme="warm"] .page-body code {
+  background: var(--surface-2);
+  border-color: var(--rule);
+  color: var(--ink-strong);
+}
+
+:root[data-theme="warm"] .dropdown-item.active {
+  background: var(--accent-wash);
+}
+
+:root[data-theme="warm"] .topnav {
+  background: rgba(26, 24, 22, 0.85);
+  border-bottom-color: var(--rule);
+}
+
+/* ---------- Targeted dark-mode component refinements ---------- */
+
+/* Mode 3 accent underline — slightly brighter so the dotted rule
+   reads against dark surface without becoming distracting */
+:root[data-theme="dark"] .m3 {
+  text-decoration-color: var(--accent-soft);
+}
+
+/* Mode 2 inline source-script — keep subordinate to body but readable */
+:root[data-theme="dark"] .m2-apparatus .heb,
+:root[data-theme="dark"] .m2-apparatus .grk {
+  color: var(--ink-soft);
+}
+
+/* Selection — wine-tinted highlight in dark mode */
+:root[data-theme="dark"] ::selection {
+  background: rgba(199, 88, 88, 0.32);
+  color: var(--ink-strong);
+}
+
+/* Decision-procedure badges — translucent fills layer better on dark */
+:root[data-theme="dark"] .step-result.pass {
+  background: rgba(74, 222, 128, 0.12);
+}
+
+:root[data-theme="dark"] .step-result.partial {
+  background: rgba(251, 191, 36, 0.14);
+}
+
+:root[data-theme="dark"] .step-result.fail {
+  background: rgba(199, 88, 88, 0.18);
+}
+
+/* The {-} brand mark — add a subtle inner border in dark mode so the wine
+   square has a defined edge against the dark navigation background */
+:root[data-theme="dark"] .nav-brand-logo {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Verse-cite block — invert the soft-panel feel: slightly elevated dark
+   surface with the same wine left-border */
+:root[data-theme="dark"] .page-body .verse-cite {
+  background: var(--surface);
+  border-left-color: var(--accent-soft);
+}
+
+/* Inline code — dark-mode pill */
+:root[data-theme="dark"] .page-body code {
+  background: var(--surface-2);
+  border-color: var(--rule);
+  color: var(--ink-strong);
+}
+
+/* Active section row in chapter dropdown — wine wash needs adjustment */
+:root[data-theme="dark"] .dropdown-item.active {
+  background: var(--accent-wash);
+}
+
+/* Top nav background — light mode uses semi-transparent white;
+   dark mode needs semi-transparent dark to maintain the blur-frosted feel
+   without washing out the entire nav row */
+/* Top nav background — match the new bg color */
+:root[data-theme="dark"] .topnav {
+  background: rgba(15, 15, 15, 0.88);
+  border-bottom-color: var(--rule);
+}
+
+
+/* ---------- reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-bright);
+}
+
+
+/* =====================================================
+   TOP NAVIGATION
+   ===================================================== */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.topnav-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.65rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-ui);
+  min-height: var(--nav-h);
+}
+
+/* Brand */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-right: 0.85rem;
+  border-right: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.nav-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: var(--surface);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.nav-brand-logo svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav-brand-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--ink-strong);
+  letter-spacing: -0.005em;
+}
+
+.nav-brand-mark {
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.015em;
+  margin-top: 1px;
+}
+
+/* Spacer that pushes lang+links to the right */
+.nav-spacer {
+  flex: 1;
+}
+
+/* Selector buttons */
+.selector-wrap {
+  position: relative;
+}
+
+.selector-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  transition: all 0.15s;
+  min-height: 38px;
+}
+
+.selector-btn:hover {
+  border-color: var(--accent-rule);
+  background: var(--accent-wash);
+}
+
+.selector-btn.open {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  box-shadow: 0 0 0 3px rgba(127, 29, 29, 0.08);
+}
+
+.selector-btn-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  font-weight: 500;
+  padding-right: 0.35rem;
+  border-right: 1px solid var(--rule);
+}
+
+.selector-btn.open .selector-btn-eyebrow {
+  color: var(--accent);
+  border-right-color: var(--accent-rule);
+}
+
+.selector-btn-value {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-strong);
+  font-style: italic;
+  white-space: nowrap;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selector-btn-arrow {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  transition: transform 0.2s;
+}
+
+.selector-btn.open .selector-btn-arrow {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+/* Compact mini button (lang) */
+.selector-btn-mini {
+  padding: 0.4rem 0.6rem;
+  min-width: 0;
+}
+
+.selector-btn-mini .selector-btn-value {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Dropdown panels — defaults are mobile-safe; larger on bigger screens */
+.selector-dropdown {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  /* Mobile-safe defaults — fits even on a ~360px screen */
+  min-width: 16rem;
+  max-width: calc(100vw - 1.5rem);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s;
+  max-height: 75vh;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.selector-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Language is a tiny menu, anchored to the right edge */
+.selector-dropdown-mini {
+  right: 0;
+  left: auto;
+  min-width: 9rem;
+}
+
+/* On wider screens, allow the book and chapter dropdowns to grow */
+@media (min-width: 720px) {
+  #book-selector-dropdown {
+    min-width: 24rem;
+  }
+
+  #chapter-selector-dropdown {
+    min-width: 30rem;
+  }
+}
+
+.dropdown-header {
+  padding: 0.85rem 1rem 0.55rem;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.dropdown-list {
+  list-style: none;
+  padding: 0.35rem;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.12s;
+  border-left: 2px solid transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background: var(--accent-wash);
+}
+
+.dropdown-item.active {
+  background: var(--accent-wash);
+  border-left-color: var(--accent);
+}
+
+.dropdown-item-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.15rem;
+}
+
+.dropdown-item-tag {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  min-width: 2.2rem;
+}
+
+.dropdown-item-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ink-strong);
+  line-height: 1.25;
+}
+
+.dropdown-item-range {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  margin-left: auto;
+}
+
+.dropdown-item-sub {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  margin-left: 2.8rem;
+  margin-top: 0.1rem;
+}
+
+/* Mini items (language) */
+.dropdown-item-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.dropdown-item-mini.active {
+  background: var(--accent-wash);
+  color: var(--accent);
+}
+
+.dropdown-item-mini:hover {
+  background: var(--accent-wash);
+}
+
+.dropdown-item-mini-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--surface-2);
+  color: var(--ink-muted);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.dropdown-item-mini.active .dropdown-item-mini-code {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+/* Quick nav links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--rule);
+}
+
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  border-bottom: 1px dotted transparent;
+  padding-bottom: 1px;
+  transition: color 0.15s;
+  text-decoration: none;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent-rule);
+}
+
+.nav-link-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  border-bottom-style: solid;
+}
+
+.nav-link-support {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 30px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.nav-link-support:hover {
+  background: var(--accent);
+  color: var(--surface);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   THEME TOGGLE — three-icon rotation button
+   ===================================================== */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 0.4rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--ink-muted);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-rule);
+  background: var(--accent-wash);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Hide all icons by default, then show the correct one
+   based on the current theme on <html> */
+.theme-toggle .icon-light {
+  display: none;
+}
+
+.theme-toggle .icon-dark {
+  display: none;
+}
+
+.theme-toggle .icon-warm {
+  display: none;
+}
+
+/* Light mode → show dark icon (moon — click to go dark) */
+:root[data-theme="light"] .theme-toggle .icon-dark {
+  display: block;
+}
+
+/* Dark mode → show warm icon (click to go warm) */
+:root[data-theme="dark"] .theme-toggle .icon-warm {
+  display: block;
+}
+
+/* Warm mode → show light icon (sun — click to go light) */
+:root[data-theme="warm"] .theme-toggle .icon-light {
+  display: block;
+}
+
+
+/* =====================================================
+   MAIN — reading column
+   The outer .main spans 90% of the viewport (capped).
+   The inner .section-body is constrained for readability.
+   ===================================================== */
+.main {
+  width: 90vw;
+  max-width: var(--read-max);
+  margin: 0 auto;
+  padding: 3.5rem 1.75rem 5rem;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Section header — fills the column up to a comfortable line-length cap */
+.section-header {
+  max-width: 1180px;
+  margin: 0 auto 2.75rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-body {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section eyebrow */
+.section-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+  font-weight: 600;
+}
+
+.section-eyebrow-sep {
+  color: var(--ink-faint);
+  margin: 0 0.4rem;
+}
+
+.section-title {
+  font-family: var(--font-body);
+  font-size: 2.6rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.05;
+  margin-bottom: 0.55rem;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+}
+
+.section-sub {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  font-style: normal;
+}
+
+/* Body paragraphs — dedicated number gutter keeps references clear and airy. */
+.passage {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  column-gap: 1rem;
+  align-items: start;
+  font-size: 1.1rem;
+  line-height: 1.78;
+  margin-bottom: 1.35rem;
+  text-align: justify;
+  hyphens: auto;
+  position: relative;
+}
+
+.passage-marker {
+  position: static;
+  display: block;
+  padding-top: 0.34rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+  user-select: none;
+  opacity: 0.65;
+  transition: opacity 0.15s, color 0.15s;
+  cursor: default;
+}
+
+.passage-text {
+  min-width: 0;
+}
+
+.passage:hover .passage-marker {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.passage em {
+  font-style: italic;
+}
+
+.passage strong {
+  font-weight: 600;
+}
+
+.divider {
+  text-align: center;
+  margin: 2.5rem 0 1.75rem;
+  color: var(--rule-strong);
+  font-size: 1rem;
+  letter-spacing: 0.6em;
+  user-select: none;
+}
+
+/* In-narrative chapter markers */
+.chap-mark {
+  display: block;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 2rem 0 1.25rem;
+  font-weight: 500;
+}
+
+/* ---------- Mode 1: plain, with lexical note ---------- */
+.m1 {
+  cursor: pointer;
+  border-bottom: 1px dotted var(--ink-faint);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.m1:hover {
+  border-bottom-color: var(--rule-strong);
+  background: var(--mode2-wash);
+}
+
+/* ---------- Mode 2: documented ---------- */
+.m2 {
+  cursor: pointer;
+  border-bottom: 1px dotted var(--ink-faint);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.m2:hover {
+  border-bottom-color: var(--accent-soft);
+  background: var(--mode2-wash);
+}
+
+.m2 .m2-apparatus {
+  font-size: 0.85em;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.m2 .m2-apparatus::before {
+  content: " {— ";
+  font-style: normal;
+  color: var(--ink-faint);
+}
+
+.m2 .m2-apparatus::after {
+  content: "}";
+  font-style: normal;
+  color: var(--ink-faint);
+}
+
+/* ---------- Mode 3: transliteration ---------- */
+.m3 {
+  font-style: italic;
+  cursor: pointer;
+  border-bottom: 1px dotted var(--accent-soft);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  padding: 0 0.05em;
+}
+
+.m3:hover {
+  background: var(--mode3-wash);
+  border-bottom-color: var(--accent);
+  color: var(--accent-deep);
+}
+
+/* ---------- Ambiguity marker ---------- */
+.amb {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  color: var(--accent);
+  background: var(--accent-wash);
+  padding: 0.05em 0.4em;
+  border-radius: 2px;
+  margin: 0 0.1em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.amb:hover {
+  background: var(--accent-wash-2);
+  border-color: var(--accent-rule);
+}
+
+/* ---------- Original-script inline ---------- */
+.heb {
+  font-family: var(--font-heb);
+  font-style: normal;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 1.05em;
+}
+
+.grk {
+  font-family: var(--font-grk);
+  font-style: normal;
+}
+
+
+/* =====================================================
+   PREV / NEXT NAVIGATION — arrow buttons
+   ===================================================== */
+.section-nav {
+  margin: 4rem auto 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 1180px;
+}
+
+.section-nav-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.4rem;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  line-height: 1;
+  transition: all 0.18s;
+  cursor: pointer;
+  position: relative;
+}
+
+.section-nav-arrow:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.section-nav-arrow:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.section-nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Tooltip on hover showing the destination section */
+.section-nav-arrow[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  background: var(--ink-strong);
+  color: var(--surface);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+  letter-spacing: 0.01em;
+  max-width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-nav-arrow:hover[data-tooltip]::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.section-nav-current {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+  min-width: 3rem;
+  text-align: center;
+}
+
+
+/* =====================================================
+   COMMENTARIES LIST — appears below prev/next on reading view
+   ===================================================== */
+.commentaries {
+  margin: 3.5rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  max-width: 1180px;
+}
+
+.commentaries-head {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+}
+
+.commentaries-empty {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.commentaries-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.commentaries-item {
+  margin: 0;
+}
+
+.commentaries-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.commentaries-link:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+  transform: translateX(2px);
+}
+
+.commentaries-title {
+  font-family: var(--font-body);
+  font-size: 1.04rem;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.commentaries-arrow {
+  font-family: var(--font-body);
+  color: var(--accent);
+  font-size: 1.05rem;
+  transition: transform 0.15s;
+}
+
+.commentaries-link:hover .commentaries-arrow {
+  transform: translateX(3px);
+}
+
+
+/* =====================================================
+   PAGE TEMPLATE — commentaries, About, Legend
+   Shared layout for non-reading pages. Same fonts, same width
+   as the reading view, but essay typography (no verse markers).
+   ===================================================== */
+.page-header {
+  max-width: 1180px;
+  margin: 0 auto 2.75rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.page-eyebrow-sep {
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.page-title {
+  font-family: var(--font-body);
+  font-size: 2.4rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 0.65rem;
+  color: var(--ink);
+}
+
+.page-sub {
+  font-family: var(--font-body);
+  font-size: 1.06rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.page-body {
+  max-width: 1180px;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  line-height: 1.74;
+  color: var(--ink);
+}
+
+.page-body p {
+  margin: 0 0 1.15rem;
+}
+
+/* First-paragraph drop-cap for a quietly elegant essay opening.
+   Apply with class="page-body-lead" on the first paragraph if desired. */
+.page-body p.page-body-lead::first-letter {
+  font-size: 3.4rem;
+  font-weight: 500;
+  float: left;
+  line-height: 0.95;
+  margin: 0.25rem 0.6rem 0 0;
+  color: var(--accent);
+  font-family: var(--font-body);
+}
+
+.page-body h2 {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  color: var(--ink);
+  margin: 2.4rem 0 0.8rem;
+  line-height: 1.25;
+}
+
+.page-body h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.18rem;
+  color: var(--ink);
+  margin: 1.85rem 0 0.55rem;
+}
+
+.page-body blockquote {
+  margin: 1.4rem 0;
+  padding: 0.4rem 0 0.4rem 1.4rem;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.page-body blockquote p {
+  margin: 0 0 0.6rem;
+}
+
+.page-body blockquote p:last-child {
+  margin: 0;
+}
+
+.page-body em {
+  font-style: italic;
+}
+
+.page-body strong {
+  font-weight: 600;
+}
+
+.page-body code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  padding: 0.05em 0.35em;
+  background: var(--surface-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  color: var(--ink);
+}
+
+.page-body ul,
+.page-body ol {
+  margin: 0 0 1.15rem;
+  padding-left: 1.6rem;
+}
+
+.page-body li {
+  margin-bottom: 0.4rem;
+}
+
+/* Verse citation block — visually distinct from prose blockquote */
+.page-body .verse-cite {
+  font-family: var(--font-body);
+  font-style: normal;
+  background: var(--surface-soft);
+  border-left: 3px solid var(--accent-soft);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.page-body .verse-cite-ref {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+/* Page footer — back-to-reading link */
+.page-footer {
+  max-width: 1180px;
+  margin: 4rem auto 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-back-link {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  transition: gap 0.15s;
+}
+
+.page-back-link:hover {
+  gap: 0.7rem;
+}
+
+.page-back-link-arrow {
+  font-size: 1.05rem;
+}
+
+.page-footer-meta {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+/* Phone — match reading view padding */
+@media (max-width: 700px) {
+  .page-title {
+    font-size: 1.85rem;
+  }
+
+  .page-body {
+    font-size: 1.04rem;
+    line-height: 1.72;
+  }
+
+  .page-body p.page-body-lead::first-letter {
+    font-size: 2.8rem;
+  }
+}
+
+
+/* =====================================================
+   LANGUAGE FALLBACK BANNER
+   Shown when the user requests a language variant of a page
+   that hasn't been translated yet.
+   ===================================================== */
+.lang-fallback-banner {
+  position: fixed;
+  top: 4.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: calc(100vw - 2rem);
+  padding: 0.7rem 0.85rem 0.7rem 1.1rem;
+  background: var(--accent);
+  color: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  animation: lang-banner-in 0.25s ease-out;
+}
+
+@keyframes lang-banner-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.lang-fallback-message {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.lang-fallback-close {
+  background: transparent;
+  border: none;
+  color: var(--surface);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.lang-fallback-close:hover {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .lang-fallback-banner {
+    top: auto;
+    bottom: 1rem;
+    font-size: 0.82rem;
+  }
+}
+
+
+/* =====================================================
+   SIDE PANEL — apparatus / inspector
+   Enhanced scholarly inspector while preserving the site's visual identity.
+   ===================================================== */
+body.panel-open {
+  overflow: hidden;
+}
+
+.panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 16, 15, 0.48);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+  z-index: 50;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.panel-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: clamp(500px, 42vw, 680px);
+  max-width: 94vw;
+  background: var(--surface);
+  border-left: 1px solid var(--rule);
+  box-shadow: var(--shadow-panel);
+  transform: translateX(102%);
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel.open {
+  transform: translateX(0);
+}
+
+.panel-head {
+  min-height: 78px;
+  padding: 1rem 1.35rem 0.95rem 1.6rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.panel-head-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.panel-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.panel-head-title {
+  font-family: var(--font-body);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.panel-close {
+  flex: 0 0 auto;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: var(--ink-muted);
+  background: var(--surface);
+  padding: 0;
+  line-height: 0;
+  display: inline-grid;
+  place-items: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.panel-close-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.panel-close-icon path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.panel-close:hover {
+  background: var(--accent-wash);
+  color: var(--accent);
+  border-color: var(--accent-rule);
+  transform: scale(1.04);
+}
+
+.panel-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.panel-close:active {
+  transform: scale(0.97);
+}
+
+.panel-body {
+  padding: 1.45rem 1.6rem 3.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.68;
+  scrollbar-gutter: stable;
+}
+
+.panel-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-entry-hero {
+  position: relative;
+  padding: 1.35rem 1.35rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(145deg, var(--surface), var(--surface-2));
+  overflow: hidden;
+}
+
+.panel-entry-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--accent);
+}
+
+.panel-term {
+  font-family: var(--font-body);
+  font-size: clamp(1.65rem, 3vw, 2.15rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem 0.85rem;
+  margin-bottom: 0.45rem;
+  line-height: 1.12;
+}
+
+.panel-term-heb {
+  font-family: var(--font-heb);
+  font-style: normal;
+  font-size: 0.82em;
+  direction: rtl;
+  unicode-bidi: isolate;
+  color: var(--accent);
+}
+
+.panel-meta {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.8rem;
+}
+
+.panel-meta-gloss {
+  flex: 1 1 260px;
+  font-style: italic;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.panel-section {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.panel-section-head {
+  font-family: var(--font-ui);
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+  background: var(--surface-2);
+}
+
+.panel-section-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--ink);
+  padding: 1rem;
+}
+
+.panel-section-body p+p {
+  margin-top: 0.75rem;
+}
+
+/* Decision procedure */
+.step-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+}
+
+.step-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 0.7rem 0.85rem;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.step-row:last-child {
+  border-bottom: none;
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  color: var(--ink-soft);
+  padding-top: 0.15rem;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 0.73rem;
+}
+
+.step-desc {
+  color: var(--ink);
+  line-height: 1.52;
+}
+
+.step-result {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.26rem 0.52rem;
+  border: 1px solid currentColor;
+  line-height: 1.1;
+}
+
+.step-pass {
+  color: var(--status-pass);
+  background: color-mix(in srgb, var(--status-pass) 9%, transparent);
+}
+
+.step-partial {
+  color: var(--status-partial);
+  background: color-mix(in srgb, var(--status-partial) 10%, transparent);
+}
+
+.step-fail {
+  color: var(--status-fail);
+  background: color-mix(in srgb, var(--status-fail) 9%, transparent);
+}
+
+/* Lexicon references */
+.lexicon-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.lexicon-row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.7rem 0.85rem;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.lexicon-row:last-child {
+  border-bottom: none;
+}
+
+.lexicon-abbr {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--accent);
+  padding-top: 0.15rem;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.lexicon-ref {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+}
+
+.lexicon-note {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Axiom tags */
+.axioms-served {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.axiom-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.2rem 0.62rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--accent-wash);
+  color: var(--accent);
+  border: 1px solid var(--accent-rule);
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+/* Mode badges */
+.mode-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0.2rem 0.62rem;
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.mode-badge-1 {
+  background: transparent;
+  color: var(--ink-muted);
+  border: 1px solid var(--rule);
+}
+
+.mode-badge-2 {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+}
+
+.mode-badge-3 {
+  background: var(--accent);
+  color: var(--surface);
+  border: 1px solid var(--accent);
+}
+
+.mode-badge-amb {
+  background: var(--accent-wash);
+  color: var(--accent);
+  border: 1px solid var(--accent-rule);
+}
+
+/* Ambiguity readings list */
+.amb-reading {
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.6rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.amb-reading-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.amb-reading-text {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-strong);
+  line-height: 1.4;
+}
+
+/* About / Legend content */
+.about-content {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.about-content h4 {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--ink-strong);
+}
+
+.about-content h4:first-child {
+  margin-top: 0;
+}
+
+.about-content p {
+  margin-bottom: 0.85rem;
+}
+
+.about-content .example-box {
+  background: var(--accent-wash);
+  border-left: 3px solid var(--accent);
+  padding: 0.85rem 1.1rem;
+  margin: 0.85rem 0;
+  font-size: 0.96rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.about-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface-2);
+  padding: 0.05em 0.35em;
+  border-radius: 2px;
+  color: var(--ink);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+/* Tablet */
+@media (max-width: 980px) {
+  .topnav-inner {
+    padding: 0.6rem 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-brand {
+    padding-right: 0.5rem;
+  }
+
+  .nav-brand-mark {
+    display: none;
+  }
+
+  .nav-spacer {
+    display: none;
+  }
+
+  .nav-links {
+    padding-left: 0.5rem;
+  }
+
+  .selector-btn-eyebrow {
+    display: none;
+  }
+
+  .selector-btn-value {
+    max-width: 9rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .topnav-inner {
+    padding: 0.55rem 0.7rem;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Brand: just the logo mark, fixed size */
+  .nav-brand {
+    border-right: none;
+    padding-right: 0;
+    flex: 0 0 auto;
+  }
+
+  .nav-brand-text {
+    display: none;
+  }
+
+  /* Book gets more room since names are longer; chapter stays narrow */
+  #book-selector-wrap {
+    flex: 1 1 9rem;
+    min-width: 0;
+  }
+
+  #chapter-selector-wrap {
+    flex: 0 1 5.5rem;
+    min-width: 0;
+  }
+
+  /* Force a row break before the language selector and links —
+     re-purpose the nav-spacer (hidden on tablet) as a 100%-wide break */
+  .nav-spacer {
+    display: block;
+    flex: 1 0 100%;
+    height: 0;
+    order: 5;
+  }
+
+  /* Language and links go on the second row, pushed by the spacer */
+  #lang-selector-wrap {
+    order: 10;
+    flex: 0 0 auto;
+  }
+
+  .nav-links {
+    order: 11;
+    flex: 1 1 auto;
+    border-left: none;
+    padding-left: 0;
+    justify-content: flex-end;
+    gap: 1rem;
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 0.4rem;
+    margin-top: 0.1rem;
+  }
+
+  .selector-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.82rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .selector-btn-value {
+    font-size: 0.92rem;
+    max-width: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Dropdowns: fit the screen, anchor sensibly per-button-position. */
+  .selector-dropdown {
+    min-width: 0;
+    width: max-content;
+    max-width: calc(100vw - 1.4rem);
+  }
+
+  /* On phone, reposition wide dropdowns relative to viewport rather than to
+     their trigger button. This guarantees symmetric breathing margins on both
+     sides of the screen, regardless of where the button sits in the topnav.
+     `position: fixed` references the viewport directly. */
+  #book-selector-dropdown,
+  #chapter-selector-dropdown {
+    position: fixed;
+    left: 0.7rem;
+    right: 0.7rem;
+    top: auto;
+    /* fixed to viewport, manual positioning below */
+    width: auto;
+    max-width: none;
+  }
+
+  /* Position the panels just below the topnav row they sit in. The book and
+     chapter buttons live on row 1 (the top row), so their dropdowns appear
+     immediately below it. Calculated to match `top: calc(100% + 0.4rem)` on
+     desktop — empirically ~3rem below the top of the topnav on mobile. */
+  #book-selector-dropdown,
+  #chapter-selector-dropdown {
+    top: 3rem;
+  }
+
+  /* Language sits on row 2 — keep its trigger-relative positioning since it's
+     a small dropdown and the second row is below row 1. */
+  #lang-selector-dropdown {
+    left: 0;
+    right: auto;
+  }
+
+  .main {
+    padding: 2rem 1rem 3.5rem;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .passage {
+    font-size: 1.04rem;
+    line-height: 1.72;
+    text-align: left;
+  }
+
+  .passage-marker {
+    position: static;
+    display: inline-block;
+    margin-right: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .section-nav {
+    gap: 1.25rem;
+  }
+
+  .section-nav-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+
+  /* Hide arrow tooltips on touch devices — they don't dismiss well */
+  .section-nav-arrow[data-tooltip]::after {
+    display: none;
+  }
+
+  .panel {
+    width: 100vw;
+    max-width: none;
+    border-left: none;
+  }
+
+  .panel-head {
+    min-height: 68px;
+    padding: 0.8rem 1rem;
+  }
+
+  .panel-body {
+    padding: 1rem 1rem calc(2rem + env(safe-area-inset-bottom));
+  }
+
+  .panel-entry-hero {
+    padding: 1.1rem 1rem 1rem;
+  }
+
+  .panel-term {
+    font-size: 1.75rem;
+  }
+
+  .step-row {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 0.45rem 0.65rem;
+  }
+
+  .step-result {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* Very narrow phones — drop the gap further */
+@media (max-width: 380px) {
+  .topnav-inner {
+    padding: 0.5rem 0.55rem;
+    gap: 0.3rem;
+  }
+
+  .selector-btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .selector-btn-value {
+    font-size: 0.88rem;
+  }
+}
+
+
+/* =====================================================
+   SCROLLBARS
+   ===================================================== */
+.panel-body::-webkit-scrollbar,
+.selector-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-body::-webkit-scrollbar-track,
+.selector-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-body::-webkit-scrollbar-thumb,
+.selector-dropdown::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
+  border-radius: 3px;
+}
+
+.panel-body::-webkit-scrollbar-thumb:hover,
+.selector-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+
+/* =====================================================
+   COMMENTARY EXTENDED CONTENT — tables, images, video,
+   callouts, footnotes. Matches the page-body prose rhythm.
+   ===================================================== */
+
+/* ---------- Images ---------- */
+.page-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.75rem auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+}
+
+.page-body img.full-bleed {
+  width: 100%;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+
+/* Image with caption */
+.page-body figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.page-body figure img {
+  margin-bottom: 0.5rem;
+}
+
+.page-body figcaption {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.45;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* ---------- Responsive video embed (YouTube, Vimeo, etc.) ---------- */
+.page-body .video-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  margin: 1.75rem 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+
+.page-body .video-wrap iframe,
+.page-body .video-wrap video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Tables ---------- */
+.page-body .table-wrap {
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.page-body thead {
+  border-bottom: 2px solid var(--accent);
+}
+
+.page-body th {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.8rem 0.4rem;
+  white-space: nowrap;
+}
+
+.page-body td {
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+  color: var(--ink);
+}
+
+.page-body tbody tr:hover {
+  background: var(--surface-soft);
+}
+
+/* Align numbers right */
+.page-body td.num,
+.page-body th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Centered table headers (opt-in) */
+.page-body th.center {
+  text-align: center;
+}
+
+/* Compact table variant */
+
+/* Compact table variant */
+.page-body table.compact {
+  font-size: 0.84rem;
+}
+
+.page-body table.compact th {
+  font-size: 0.68rem;
+  padding: 0.35rem 0.6rem 0.3rem;
+}
+
+.page-body table.compact td {
+  padding: 0.35rem 0.6rem;
+}
+
+/* ---------- Callout / aside box ---------- */
+.page-body .callout {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--surface-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.96rem;
+  line-height: 1.68;
+}
+
+.page-body .callout-title {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.page-body .callout.warning {
+  background: var(--accent-wash);
+  border-left-color: var(--status-partial);
+}
+
+.page-body .callout.info {
+  background: var(--mode2-wash);
+  border-left-color: var(--ink-muted);
+}
+
+/* ---------- Footnotes / marginalia ---------- */
+.page-body .fn-ref {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  color: var(--accent);
+  vertical-align: super;
+  line-height: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.page-body .fn-ref:hover {
+  color: var(--accent-bright);
+}
+
+.page-body .footnotes {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+.page-body .footnotes ol {
+  padding-left: 1.4rem;
+}
+
+.page-body .footnotes li {
+  margin-bottom: 0.5rem;
+}
+
+.page-body .footnotes li:target {
+  background: var(--accent-wash);
+  padding: 0.3rem 0.5rem;
+  margin: -0.3rem -0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Horizontal rule — styled for commentary ---------- */
+.page-body hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.25rem 0;
+}
+
+/* Ornamental divider (✻ ✻ ✻) — reuse the reading-view class */
+.page-body .divider {
+  text-align: center;
+  margin: 2.25rem 0;
+  color: var(--rule-strong);
+  font-size: 0.95rem;
+  letter-spacing: 0.6em;
+  user-select: none;
+}
+
+/* ---------- Responsive — tablets ---------- */
+@media (max-width: 980px) {
+  .page-body .callout {
+    margin: 1.5rem 0;
+    padding: 0.95rem 1.1rem;
+    font-size: 0.93rem;
+  }
+
+  .page-body table {
+    font-size: 0.86rem;
+  }
+
+  .page-body th {
+    font-size: 0.68rem;
+  }
+}
+
+/* ---------- Responsive — phones ---------- */
+@media (max-width: 700px) {
+  .page-body .video-wrap {
+    margin: 1.25rem 0;
+    border-radius: var(--radius-sm);
+  }
+
+  .page-body figure {
+    margin: 1.5rem 0;
+  }
+
+  .page-body figcaption {
+    font-size: 0.74rem;
+    max-width: 100%;
+  }
+
+  /* Table — linearize on phone: each row becomes a stacked card */
+  .page-body table.responsive-card thead {
+    display: none;
+  }
+
+  .page-body table.responsive-card,
+  .page-body table.responsive-card tbody,
+  .page-body table.responsive-card tr,
+  .page-body table.responsive-card td {
+    display: block;
+  }
+
+  .page-body table.responsive-card tr {
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .page-body table.responsive-card td {
+    border-bottom: none;
+    padding: 0.25rem 0.5rem;
+    position: relative;
+    padding-left: 40%;
+  }
+
+  .page-body table.responsive-card td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.5rem;
+    width: 35%;
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .page-body .callout {
+    margin: 1.3rem 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.91rem;
+  }
+
+  .page-body .footnotes {
+    font-size: 0.84rem;
+  }
+}
+
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+.search-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 0.2rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--ink-muted);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.search-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-rule);
+  background: var(--accent-wash);
+}
+
+.search-toggle svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding-top: 12vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.search-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-modal {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 90vw;
+  max-width: 640px;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.search-input-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.search-close {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  color: var(--ink-muted);
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.search-close:hover {
+  background: var(--accent-wash);
+  color: var(--accent);
+  border-color: var(--accent-rule);
+}
+
+.search-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.6rem;
+}
+
+.search-empty {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-style: italic;
+}
+
+.search-result {
+  display: block;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.12s;
+}
+
+.search-result:hover {
+  background: var(--surface-soft);
+}
+
+.search-result-type {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.search-result-title {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-style: italic;
+  color: var(--ink-strong);
+  margin-bottom: 0.1rem;
+}
+
+.search-result-sub {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.search-result-snippet {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: 0.3rem;
+}
+
+.search-result-snippet mark {
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.search-result-book {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--ink-faint);
+  margin-top: 0.2rem;
+}
+
+.search-no-results {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-style: italic;
+}
+
+/* Enhanced apparatus responsiveness */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .panel {
+    width: min(620px, 78vw);
+    max-width: 78vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .panel,
+  .panel-overlay {
+    transition: none;
+  }
+}
+
+/* =====================================================
+   DESKTOP APPARATUS — permanent second column
+   Tablet and phone retain the responsive overlay/drawer behavior.
+   ===================================================== */
+@media (min-width: 1101px) {
+  :root {
+    --desktop-apparatus-width: clamp(440px, 36vw, 620px);
+  }
+
+  body.panel-open {
+    overflow: auto;
+  }
+
+  .main {
+    width: calc(100vw - var(--desktop-apparatus-width));
+    max-width: none;
+    margin: 0 var(--desktop-apparatus-width) 0 0;
+    padding-left: max(1.75rem, calc((100vw - var(--desktop-apparatus-width) - 1180px) / 2));
+    padding-right: max(3rem, calc((100vw - var(--desktop-apparatus-width) - 1180px) / 2));
+  }
+
+  .panel-overlay {
+    display: none !important;
+  }
+
+  .panel {
+    width: var(--desktop-apparatus-width);
+    max-width: none;
+    transform: none !important;
+    box-shadow: -10px 0 28px rgba(18, 16, 15, 0.07);
+    z-index: 35;
+  }
+
+  .panel-close {
+    display: none;
+  }
+
+  .panel-head {
+    padding-right: 1.6rem;
+  }
+}
+
+/* =====================================================
+   DESKTOP LAYOUT FIXES
+   Keep the permanent apparatus below the global navigation and
+   retain a safe left gutter for paragraph markers.
+   ===================================================== */
+@media (min-width: 1101px) {
+  .panel {
+    top: var(--nav-h);
+    height: calc(100dvh - var(--nav-h));
+    z-index: 25;
+  }
+
+  .topnav {
+    z-index: 40;
+  }
+
+}
+
+/* Paragraph gutter remains readable on narrow screens without crowding text. */
+@media (max-width: 700px) {
+  .passage {
+    grid-template-columns: 1.35rem minmax(0, 1fr);
+    column-gap: 0.65rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .passage-marker {
+    padding-top: 0.38rem;
+    font-size: 0.62rem;
+  }
+}
+
+/* Final desktop spacing and theme-matched apparatus header. */
+.panel-head {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+}
+
+:root[data-theme="dark"] .panel-head {
+  background: rgba(15, 15, 15, 0.88);
+}
+
+:root[data-theme="warm"] .panel-head {
+  background: rgba(26, 24, 22, 0.85);
+}
+
+@media (min-width: 1101px) {
+
+  .section-header,
+  .section-body {
+    padding-right: 0.75rem;
+  }
+}
+
+/* =====================================================
+   MOBILE / TABLET READING LAYOUT
+   -----------------------------------------------------
+   Desktop:
+   - permanent apparatus
+   - wide reading column
+
+   Tablet / phone:
+   - centered, controlled reading column
+   - balanced number gutter and right margin
+   - apparatus remains an overlay
+   ===================================================== */
+
+/* =====================================================
+   CENTERED READING LAYOUT
+   -----------------------------------------------------
+   The reading column is centered within the available
+   reading pane on every screen size.
+
+   Important:
+   - The prose itself is not centered.
+   - The complete reading measure is centered.
+   - Desktop keeps the permanent apparatus.
+   - Tablet and phone keep the overlay apparatus.
+   ===================================================== */
+
+
+/* =====================================================
+   DESKTOP — CENTERED INSIDE THE LEFT READING PANE
+   ===================================================== */
+
+   @media (min-width: 1101px) {
+
+    /*
+     * The main element already excludes the permanent apparatus.
+     * These rules center the content inside that remaining pane.
+     */
+    .main {
+      display: block;
+  
+      width: calc(100vw - var(--desktop-apparatus-width));
+      max-width: none;
+  
+      margin: 0 var(--desktop-apparatus-width) 0 0;
+  
+      padding-top: 3.5rem;
+      padding-bottom: 5rem;
+  
+      /*
+       * Equal outer padding means the complete reading system
+       * is centered inside the left desktop pane.
+       */
+      padding-left: clamp(2rem, 4vw, 4.5rem);
+      padding-right: clamp(2rem, 4vw, 4.5rem);
+    }
+  
+    /*
+     * Header remains slightly wider than the prose body,
+     * but both share the same central axis.
+     */
+    .section-header {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 76rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2.75rem;
+  
+      padding-left: 0;
+      padding-right: 0;
+    }
+  
+    /*
+     * The body contains the number gutter and the prose.
+     * Its overall measure is centered in the reading pane.
+     */
+    .section-body {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 72rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+  
+      padding-left: 0;
+      padding-right: 0;
+    }
+  
+    /*
+     * Individual paragraphs keep a controlled book-like width.
+     * The paragraph number lives outside this measure (absolutely
+     * positioned in the left margin) so it never pulls the prose
+     * itself off the shared centered axis — matching the technique
+     * used below 1100px, where the same asymmetric-gutter bug would
+     * otherwise shift the readable text right of true center.
+     */
+    .passage {
+      position: relative;
+      display: block;
+
+      box-sizing: border-box;
+
+      width: 100%;
+      max-width: 72rem;
+
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.55rem;
+
+      padding: 0;
+
+      font-size: 1.1rem;
+      line-height: 1.78;
+
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .passage-marker {
+      position: absolute;
+      top: 0.34rem;
+      left: -3rem;
+
+      display: block;
+      width: 2rem;
+      min-width: 0;
+
+      margin: 0;
+      padding: 0;
+
+      text-align: right;
+
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+
+      color: var(--ink-faint);
+      opacity: 0.65;
+
+      user-select: none;
+      cursor: default;
+    }
+
+    .passage-text {
+      box-sizing: border-box;
+      display: block;
+
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+
+      margin: 0;
+      padding: 0;
+
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+  
+    /*
+     * Bottom navigation and commentaries follow the same axis.
+     */
+    .section-nav,
+    .commentaries {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 72rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  
+  /* =====================================================
+     TABLET AND PHONE — COMMON STRUCTURE
+     ===================================================== */
+  
+  @media (max-width: 1100px) {
+  
+    /*
+     * Full available viewport, with symmetric screen protection.
+     */
+    .main {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: none;
+  
+      margin-left: auto;
+      margin-right: auto;
+  
+      padding-top: 2.75rem;
+      padding-bottom: 4.5rem;
+      padding-left: clamp(1rem, 4vw, 2.25rem);
+      padding-right: clamp(1rem, 4vw, 2.25rem);
+    }
+  
+    /*
+     * The title and prose share the same central axis.
+     */
+    .section-header {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 46rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2.35rem;
+    }
+  
+    /*
+     * The body itself is centered.
+     *
+     * Internal padding reserves:
+     * - the number gutter on the left;
+     * - matching visual breathing space on the right.
+     */
+    .section-body {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 46rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+  
+      padding-left: clamp(3rem, 8vw, 4.25rem);
+      padding-right: clamp(3rem, 8vw, 4.25rem);
+    }
+  
+    /*
+     * The prose becomes a centered independent block.
+     * The paragraph number is positioned in the outer gutter.
+     */
+    .passage {
+      position: relative;
+      display: block;
+  
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 38rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+  
+      padding: 0;
+  
+      font-size: 1.1rem;
+      line-height: 1.82;
+  
+      text-align: justify;
+      hyphens: auto;
+    }
+  
+    /*
+     * Number does not consume width inside the prose column.
+     */
+    .passage-marker {
+      position: absolute;
+      top: 0.43rem;
+      left: -2.65rem;
+  
+      display: block;
+  
+      width: 1.7rem;
+      min-width: 0;
+  
+      margin: 0;
+      padding: 0;
+  
+      text-align: right;
+  
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+  
+      color: var(--ink-faint);
+      opacity: 0.68;
+  
+      user-select: none;
+      cursor: default;
+    }
+  
+    .passage-text {
+      box-sizing: border-box;
+      display: block;
+  
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+  
+      margin: 0;
+      padding: 0;
+  
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: normal;
+    }
+  
+    /*
+     * Interactive lexical content must remain inside the
+     * centered reading measure.
+     */
+    .passage-text *,
+    .passage-text .m1,
+    .passage-text .m2,
+    .passage-text .m3,
+    .passage-text .amb,
+    .passage-text .heb,
+    .passage-text .grk {
+      max-width: 100%;
+    }
+  
+    .passage-text .m2,
+    .passage-text .m2-apparatus {
+      overflow-wrap: break-word;
+    }
+  
+    /*
+     * Ambiguity markers remain one semantic unit.
+     */
+    .passage-text .amb {
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+  
+    /*
+     * Navigation and commentaries align with the prose,
+     * rather than with the complete screen width.
+     */
+    .section-nav,
+    .commentaries {
+      box-sizing: border-box;
+  
+      width: 100%;
+      max-width: 38rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  
+  /* =====================================================
+     TABLET
+     ===================================================== */
+  
+  @media (min-width: 701px) and (max-width: 1100px) {
+  
+    .main {
+      padding-left: clamp(1.75rem, 5vw, 3.5rem);
+      padding-right: clamp(1.75rem, 5vw, 3.5rem);
+    }
+  
+    .section-header {
+      max-width: 44rem;
+    }
+  
+    .section-body {
+      max-width: 44rem;
+
+      padding-left: 4.5rem;
+      padding-right: 4.5rem;
+    }
+  
+    .passage {
+      max-width: 37rem;
+  
+      margin-bottom: 2rem;
+  
+      font-size: 1.12rem;
+      line-height: 1.84;
+    }
+  
+    .passage-marker {
+      left: -2.8rem;
+      width: 1.8rem;
+  
+      font-size: 0.64rem;
+    }
+  
+    .section-nav,
+    .commentaries {
+      max-width: 37rem;
+    }
+  
+    /*
+     * Tablet apparatus remains an overlay drawer.
+     */
+    .panel {
+      width: min(620px, 82vw);
+      max-width: 82vw;
+    }
+  }
+  
+  
+  /* =====================================================
+     PHONE
+     ===================================================== */
+  
+  @media (max-width: 700px) {
+  
+    .main {
+      padding-top: 2.2rem;
+      padding-bottom: 4rem;
+  
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  
+    /*
+     * The header is centered independently from the numbered prose.
+     */
+    .section-header {
+      width: 100%;
+      max-width: 36rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+  
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  
+    /*
+     * The left side reserves the paragraph-number gutter.
+     * The right side mirrors the visual weight of that gutter.
+     */
+    .section-body {
+      width: 100%;
+      max-width: 36rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+  
+      padding-left: 3.65rem;
+      padding-right: 3.65rem;
+    }
+  
+    .section-title {
+      font-size: clamp(2rem, 10vw, 2.55rem);
+    }
+  
+    .section-sub {
+      font-size: 0.82rem;
+    }
+  
+    /*
+     * This is the actual centered mobile reading measure.
+     */
+    .passage {
+      width: 100%;
+      max-width: 30rem;
+  
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2.15rem;
+  
+      font-size: clamp(1.08rem, 4.7vw, 1.2rem);
+      line-height: 1.86;
+  
+      text-align: justify;
+      hyphens: auto;
+    }
+  
+    .passage-marker {
+      top: 0.45rem;
+      left: -2.55rem;
+  
+      width: 1.55rem;
+  
+      font-size: 0.61rem;
+    }
+  
+    .section-nav,
+    .commentaries {
+      max-width: 30rem;
+    }
+  
+    .section-nav {
+      margin-top: 3rem;
+    }
+  
+    .commentaries {
+      margin-top: 2.75rem;
+    }
+  
+    .divider {
+      margin-top: 2.25rem;
+      margin-bottom: 1.65rem;
+    }
+  
+    .chap-mark {
+      margin-top: 1.8rem;
+      margin-bottom: 1.15rem;
+    }
+  }
+  
+  
+  /* =====================================================
+     NARROW PHONE
+     ===================================================== */
+  
+  @media (max-width: 430px) {
+  
+    .main {
+      padding-left: 0.45rem;
+      padding-right: 0.45rem;
+    }
+  
+    .section-header {
+      padding-left: 0.6rem;
+      padding-right: 0.6rem;
+    }
+  
+    .section-body {
+      padding-left: 3.1rem;
+      padding-right: 3.1rem;
+    }
+  
+    .passage {
+      width: 100%;
+      max-width: 100%;
+  
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+  
+      font-size: 1.08rem;
+      line-height: 1.84;
+    }
+  
+    .passage-marker {
+      left: -2.25rem;
+  
+      width: 1.35rem;
+  
+      font-size: 0.59rem;
+    }
+  
+    .section-nav,
+    .commentaries {
+      max-width: 100%;
+    }
+  }
+  
+  
+  /* =====================================================
+     VERY NARROW PHONE
+     ===================================================== */
+  
+  @media (max-width: 360px) {
+  
+    .main {
+      padding-left: 0.3rem;
+      padding-right: 0.3rem;
+    }
+  
+    .section-header {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  
+    .section-body {
+      padding-left: 2.75rem;
+      padding-right: 2.75rem;
+    }
+  
+    .passage {
+      font-size: 1.03rem;
+      line-height: 1.82;
+    }
+  
+    .passage-marker {
+      left: -2rem;
+  
+      width: 1.2rem;
+  
+      font-size: 0.56rem;
+    }
+  
+    .amb {
+      padding-left: 0.28em;
+      padding-right: 0.28em;
+    }
+  }
+  
+  
+  /* =====================================================
+     SAFE INLINE WRAPPING
+     ===================================================== */
+  
+  @media (max-width: 1100px) {
+  
+    /*
+     * Original scripts and documented expressions should not
+     * create horizontal overflow.
+     */
+    .m1,
+    .m2,
+    .m2-apparatus,
+    .m3,
+    .heb,
+    .grk {
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+  
+    /*
+     * Prevent accidental viewport overflow from long content.
+     */
+    .section-body,
+    .passage,
+    .passage-text {
+      min-width: 0;
+    }
+  }
+  
+  
+  /* =====================================================
+     ACCESSIBILITY — REDUCED MOTION
+     ===================================================== */
+  
+  @media (prefers-reduced-motion: reduce) {
+
+    .panel,
+    .panel-overlay,
+    .main {
+      animation: none;
+      transition: none;
+    }
+  }
+
+
+/* =====================================================
+   NON-READING PAGES (about / legend / commentary) —
+   no apparatus sidebar
+   The lexical apparatus only has content on the reading view
+   (index.html), where clicking a Mode 2/3 term or ambiguity
+   marker opens it. About, Legend, and commentary pages are
+   plain prose with nothing to show there, so they don't ship
+   the panel at all — `body[data-page-type]` matches any of
+   them (the reading view has no such attribute). Selector
+   specificity (an attribute selector plus a class) beats the
+   plain `.main` rules above regardless of source order, so
+   this cleanly cancels the reservation on just these pages.
+   ===================================================== */
+body[data-page-type] .panel,
+body[data-page-type] .panel-overlay {
+  display: none !important;
+}
+
+@media (min-width: 1101px) {
+  body[data-page-type] .main {
+    display: block;
+    width: 100%;
+    max-width: var(--read-max);
+    margin: 0 auto;
+    padding-top: 3.5rem;
+    padding-bottom: 5rem;
+    padding-left: clamp(2rem, 4vw, 4.5rem);
+    padding-right: clamp(2rem, 4vw, 4.5rem);
+  }
+}
+
+/* Below 1101px, the reading view's .main padding is tuned tight against
+   the paragraph-number gutter — About/Legend/commentary pages have no
+   such gutter and were sitting almost flush against the screen edge.
+   Give them their own comfortable, smoothly-scaling margin instead. */
+@media (max-width: 1100px) {
+  body[data-page-type] .main {
+    padding-left: clamp(1.25rem, 5vw, 3rem);
+    padding-right: clamp(1.25rem, 5vw, 3rem);
+  }
+}
