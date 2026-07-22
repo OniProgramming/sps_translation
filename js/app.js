@@ -53,19 +53,30 @@ SPS.app = (function () {
    */
   function _switchPageLanguage(targetLang) {
     const currentUrl = new URL(window.location.href);
-    const targetPath = _computeLangVariantPath(currentUrl.pathname, targetLang);
+
+    // Work only with the current filename. The translated page always lives
+    // beside the current page (about.html <-> about.ro.html, etc.). Building a
+    // same-directory relative URL is reliable for both:
+    //   file:///C:/.../about.html
+    //   https://user.github.io/repository/about.html
+    const currentPath = currentUrl.pathname;
+    const slash = currentPath.lastIndexOf('/');
+    const currentFile = currentPath.substring(slash + 1) || 'index.html';
+    const targetFile = _computeLangVariantPath(currentFile, targetLang);
 
     // If the requested language already matches this file, only refresh the UI.
-    if (targetPath === currentUrl.pathname) {
+    if (targetFile === currentFile) {
       SPS.ui.refreshSelectors();
       return;
     }
 
-    // Navigate directly. This behaves the same on file://, localhost, and
-    // GitHub Pages, and avoids an HTTP HEAD pre-flight that can block a valid
-    // static language page from opening.
-    currentUrl.pathname = targetPath;
-    window.location.assign(currentUrl.href);
+    // Resolve the sibling filename against the complete current URL. This
+    // preserves the local drive/folder path and the GitHub Pages repository
+    // prefix without manually rebuilding either one.
+    const targetUrl = new URL(targetFile, currentUrl);
+    targetUrl.search = currentUrl.search;
+    targetUrl.hash = currentUrl.hash;
+    window.location.href = targetUrl.href;
   }
 
   /**
